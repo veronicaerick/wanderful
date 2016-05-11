@@ -2,12 +2,6 @@ from yelpapi import YelpAPI
 import pprint
 import json
 
-# set variables for all keys and tokens
-consumer_key = "3ntG-6W5C9qnOSQ6QY1ifQ"
-consumer_secret = "pYj6X0htclw37_MPafiNkizc2cI"
-token = "vmUo0Fon4ay-fmobBYSpezL-vgB9JCYd"
-token_secret = "v-i0Kl64JKTvIGM3inuIPgos-QM"
-
 # setting up the search args for the search request
 # location is required 
 location = "location=barcelona"
