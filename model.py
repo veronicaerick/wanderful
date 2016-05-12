@@ -11,9 +11,10 @@
 
 
 """Models and database functions for project."""
-from flask import Flask
-
+import json
 from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
+import datetime 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
@@ -40,10 +41,11 @@ class User(db.Model):
     phone = db.Column(db.Integer)
     zipcode = db.Column(db.Integer)
 
-    # def __repr__(self):
-    #      """Provide helpful representation when printed."""
+    def __repr__(self):
+        """Provide helpful representation when printed."""
 
-    #     return "<User user_id=%s email=%s>" % (self.user_id, self.email)
+        "<User user_name=%s firstname=%s lastname=%s email=%s >" % (
+            self.user_name, self.fname, self.lname, self.email)
 
 
 class Event(db.Model):
@@ -52,36 +54,57 @@ class Event(db.Model):
     __tablename__ = "events"
 
     event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    api_id  = db.Column(db.String(40))
     category = db.Column(db.String(30))
     name = db.Column(db.String(30))
     latitude = db.Column(db.Integer)
     longitutde = db.Column(db.Integer)
+    address = db.Column(db.String(30))
     city = db.Column(db.String(40))
     country = db.Column(db.String(40))
     phone = db.Column(db.Integer)
+    date = db.Column(db.DateTime)
+    image = db.Column(db.String(40))
 
-    # Define relationship to user
-    # user = db.relationship("User",
-    #                        backref=db.backref("ratings", order_by=rating_id))
+    def __repr__(self):
+        """Provide helpful representation when printed."""
 
-    # Define relationship to movie
-    # movie = db.relationship("Movie",
-    #                         backref=db.backref("ratings", order_by=rating_id))
+        
+        return "<User event_id=%s category=%s >" % (
+            self.event_id, self.category)
 
-    # def __repr__(self):
-    #     """Provide helpful representation when printed."""
+class Attraction(db.Model):
+    """Table of attractions."""
 
-    #     return "<Rating rating_id=%s movie_id=%s user_id=%s score=%s>" % (
-    #         self.rating_id, self.movie_id, self.user_id, self.score)
+    __tablename__ = "attractions"
 
-class Plans (db.Model):
+    attraction_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    api_id  = db.Column(db.String(40))
+    category = db.Column(db.String(30))
+    name = db.Column(db.String(30))
+    latitude = db.Column(db.Integer)
+    longitutde = db.Column(db.Integer)
+    address = db.Column(db.String(30))
+    city = db.Column(db.String(40))
+    country = db.Column(db.String(40))
+    phone = db.Column(db.Integer)
+    image = db.Column(db.String(40))
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return "<User attraction_id=%s category=%s >" % (
+            self.event_id, self.category)
+
+class Plan (db.Model):
     """Table of saved events in user agenda."""
 
-    __tablename__ = "agenda"
+    __tablename__ = "plans"
 
     event_agenda__id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
+    
     remind_id = db.Column(db.String(40))
  
  # Define relationship to user

@@ -1,15 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h1></h1>
-  <h2>My Invites</h2>
-  
-  <h2>My Events</h2>
-  
-
-  <p><a href="/event-search">Find Events</a></p>
-
-  <h2>Users</h2>
-  <p><a href="/users">Book Stuff</a></p>
+  <h1>Search by destination</h1>
+  <form action="/search_process" method="POST">
+    Enter a location:
+  <input type="text" name="location">
+  <input type="submit">
+  </form>
 
 {% endblock %}
