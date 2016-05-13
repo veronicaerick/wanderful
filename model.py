@@ -1,15 +1,3 @@
-# TODO
-# 1) set up DB to store user/ events- DEBUG model.py server.py
-# 
-# 3) Fix routes- login, home (search, my events, twilio)
-# 
-#
-# 4) Find events and restaurants, save to 'My Wanderings', set twilio reminders
-# about what I'm attending. Invite others with twilio. 
-
-# Wanderseek 
-
-
 """Models and database functions for project."""
 import json
 from flask_sqlalchemy import SQLAlchemy
@@ -29,111 +17,123 @@ db = SQLAlchemy(app)
 # Model definitions
 
 class User(db.Model):
-    """User of webapp."""
+	"""User of webapp."""
 
-    __tablename__ = "users"
+	__tablename__ = "users"
 
-    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    firstname = db.Column(db.String(20))
-    lastname = db.Column(db.String(20))
-    email = db.Column(db.String(64))
-    password = db.Column(db.String(64))
-    phone = db.Column(db.Integer)
-    zipcode = db.Column(db.Integer)
+	user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+	firstname = db.Column(db.String(20))
+	lastname = db.Column(db.String(20))
+	email = db.Column(db.String(64))
+	password = db.Column(db.String(64))
+	phone = db.Column(db.Integer)
+	zipcode = db.Column(db.Integer)
 
-    def __repr__(self):
-        """Provide helpful representation when printed."""
+	def __repr__(self):
+		"""Provide helpful representation when printed."""
 
-        "<User user_name=%s firstname=%s lastname=%s email=%s >" % (
-            self.user_name, self.fname, self.lname, self.email)
+		"<User user_name=%s firstname=%s lastname=%s email=%s >" % (
+			self.user_name, self.fname, self.lname, self.email)
 
 
 class Event(db.Model):
-    """Table of events."""
+	"""Table of events information."""
 
-    __tablename__ = "events"
+	__tablename__ = "events"
 
-    event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    api_id  = db.Column(db.String(40))
-    category = db.Column(db.String(30))
-    name = db.Column(db.String(30))
-    latitude = db.Column(db.Integer)
-    longitutde = db.Column(db.Integer)
-    address = db.Column(db.String(30))
-    city = db.Column(db.String(40))
-    country = db.Column(db.String(40))
-    phone = db.Column(db.Integer)
-    date = db.Column(db.DateTime)
-    image = db.Column(db.String(40))
+	event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+	details_id = db.Column(db.Integer, db.ForeignKey('details.details_id'))
+	api_id  = db.Column(db.String(40))
+	date = db.Column(db.DateTime)
 
-    def __repr__(self):
-        """Provide helpful representation when printed."""
+	def __repr__(self):
+		"""Provide helpful representation when printed."""
 
-        
-        return "<User event_id=%s category=%s >" % (
-            self.event_id, self.category)
+		
+		return "<User event_id=%s category=%s >" % (
+			self.event_id, self.category)
 
 class Attraction(db.Model):
-    """Table of attractions."""
+	"""Table of attraction information."""
 
-    __tablename__ = "attractions"
+	__tablename__ = "attractions"
 
-    attraction_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    api_id  = db.Column(db.String(40))
-    category = db.Column(db.String(30))
-    name = db.Column(db.String(30))
-    latitude = db.Column(db.Integer)
-    longitutde = db.Column(db.Integer)
-    address = db.Column(db.String(30))
-    city = db.Column(db.String(40))
-    country = db.Column(db.String(40))
-    phone = db.Column(db.Integer)
-    image = db.Column(db.String(40))
+	attraction_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+	details_id = db.Column(db.Integer, db.ForeignKey('details.details_id'))
+	api_id = db.Column(db.String(40))
+	rating = db.Column(db.String(40))
 
-    def __repr__(self):
-        """Provide helpful representation when printed."""
+	def __repr__(self):
+		"""Provide helpful representation when printed."""
 
-        return "<User attraction_id=%s category=%s >" % (
-            self.event_id, self.category)
+		return "<User attraction_id=%s category=%s >" % (
+			self.event_id, self.category)
 
-class Plan (db.Model):
-    """Table of saved events in user agenda."""
+class Detail(db.Model):
+	"""Table of details."""
 
-    __tablename__ = "plans"
+	__tablename__ = "details"
 
-    event_agenda__id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
-    
-    remind_id = db.Column(db.String(40))
- 
- # Define relationship to user
-    user = db.relationship("User",
-                        backref="users")
+	details_id = db.Column(db.Integer, primary_key= True)
+	category = db.Column(db.String(30))
+	name = db.Column(db.String(30))
+	latitude = db.Column(db.Integer)
+	longitutde = db.Column(db.Integer)
+	address = db.Column(db.String(30))
+	city = db.Column(db.String(40))
+	country = db.Column(db.String(40))
+	phone = db.Column(db.Integer)
+	image = db.Column(db.String(40))
+
+class UserEvent (db.Model):
+	"""Table of saved events in user agenda."""
+
+	__tablename__ = "userevent"
+
+	user_event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+	user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+	event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
+	
+	# remind_id = db.Column(db.String(40))
+
+
+# Define relationship to user
+	user = db.relationship("User",
+						backref="users")
 
 # Define relationship to event
-    event = db.relationship("Event",
-                         backref="events")
-    
-    
+	event = db.relationship("Event",
+						 backref="events")
+	
+class UserAttraction (db.Model):
+	"""Table of saved attraction in user agenda."""
+
+	__tablename__ = "userattraction"
+
+	userattraction_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+	user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+	attraction_id = db.Column(db.Integer, db.ForeignKey('attractions.attraction_id'))
+	
+	 # Define relationship to user
+	user = db.relationship("User",
+						backref="users")
 
 ##############################################################################
 # Helper functions
 
 def connect_to_db(app):
-    """Connect the database to our Flask app."""
+	"""Connect the database to our Flask app."""
 
-    # Configure to use our PostgreSQL database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
-    db.app = app
-    db.init_app(app)
+	# Configure to use our PostgreSQL database
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
+	db.app = app
+	db.init_app(app)
 
 
 if __name__ == "__main__":
-    # As a convenience, if we run this module interactively, it will leave
-    # you in a state of being able to work with the database directly.
+	# As a convenience, if we run this module interactively, it will leave
+	# you in a state of being able to work with the database directly.
 
-    from server import app
-    connect_to_db(app)
-    print "Connected to DB."
+	connect_to_db(app)
+	print "Connected to DB."
 

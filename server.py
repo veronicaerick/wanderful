@@ -10,11 +10,11 @@ from datetime import datetime
 from yelpapi import YelpAPI 
 from pprint import pprint
 import os 
-import yelp
+import yelp_results
 import json
 
 # IMPORTED MODEL TABLES TO ROUTES
-from model import User, Event, Attraction, Plan
+from model import User, Event, Attraction, Detail, UserEvent, UserAttraction
 from model import connect_to_db, db
 
 ##############################################################################
@@ -28,18 +28,6 @@ app.secret_key = "ABC"
 # This is horrible. Fix this so that, instead, it raises an error.
 app.jinja_env.undefined = StrictUndefined
 
-##############################################################################
-							# Yelp API tokens
-##############################################################################
-
-
-consumer_key=os.environ.get('YELP_CONSUMER_KEY')
-consumer_secret=os.environ.get('YELP_CONSUMER_SECRET')
-token=os.environ.get('YELP_ACCESS_TOKEN_KEY')
-token_secret=os.environ.get('YELP_ACCESS_TOKEN_SECRET')
-
-yelp_api = YelpAPI(consumer_key, consumer_secret, token, token_secret)
-
 
 ##############################################################################
 							# HOME PAGE/SEARCH FIELD
@@ -51,21 +39,37 @@ def index():
 
 	return render_template("homepage.html")
 
+##############################################################################
+							# SEARCH PROCESS AND RESULTS
+##############################################################################
 
-@app.route("/search_results", methods=["POST"])
+@app.route("/process_search", methods=["POST"])
 def search_process():
 	"""Search events."""
 	
-	location = request.form['location']
-	return render_template("results_page.html" attractions=attractions)
+	location = request.form.get('location')
 
-def get_attractions(location):
+	api_results = yelp_results.get_business_results(location)
+	return render_template("search_results.html", api_results=api_results)
 
-	search_results = yelp_api.search_query(location=location, term=attractions, limit=limit)
-	#parse out data and return attractions dict. 
+# @app.route("/search_results", methods=["POST"])
+# def search_results():
+# 	"""Search events."""
+	
+# 	location = request.form.get('location')
 
-@app.route("/add_to_events")
-def add_to_events():
+# 	attractions = yelp_results.find_attractions(location, term)
+# 	restaurants = yelp_results.find_restaurants(location, term)
+
+	
+	# return render_template("results_page.html", attractions=attractions, restaurants=restaurants)
+
+##############################################################################
+							# SEARCH PROCESS AND RESULTS
+##############################################################################
+
+@app.route("/add_to_attractions", methods=['POST'])
+def add_to_attractions():
 	"""Ajax route to add events and add the event to the user agenda."""
 	
 	api_id = request.args.get("api_id")
@@ -80,34 +84,6 @@ def attractions_to_events():
 
 
 
-##############################################################################
-						## REGISTER ROUTES ##
-##############################################################################
-
-@app.route('/register', methods=['GET'])
-def register_form():
-	"""Show form for user signup."""
-
-	return render_template("register_form.html")
-
-
-@app.route('/register', methods=['POST'])
-def register_process():
-	"""Process registration."""
-
-	# Get form variables
-	email = request.form["email"]
-	password = request.form["password"]
-	age = int(request.form["age"])
-	zipcode = request.form["zipcode"]
-
-	new_user = User(email=email, password=password, age=age, zipcode=zipcode)
-
-	db.session.add(new_user)
-	db.session.commit()
-
-	flash("User %s added." % email)
-	return redirect("/")
 
 ##############################################################################
 						## LOGIN ROUTES ##
@@ -142,6 +118,40 @@ def login_process():
 
 	flash("Logged in")
 	return redirect("/")
+
+##############################################################################
+						## REGISTER ROUTES ##
+##############################################################################
+
+@app.route('/register', methods=['GET'])
+def register_form():
+	"""Show form for user signup."""
+
+
+	return render_template("register_form.html")
+
+
+@app.route('/register', methods=['POST'])
+def register_process():
+	"""Process registration."""
+
+	# Get form variables
+	email = request.form["email"]
+	password = request.form["password"]
+	firstname = request.form["firstname"]
+	lastname = request.form["lastname"]
+	phone = request.form["phone"]
+	zipcode = request.form["zipcode"]
+
+	new_user = User(email=email, password=password, firstname=first,
+	lastname=lastname, phone=phone, zipcode=zipcode)
+
+	db.session.add(new_user)
+	db.session.commit()
+
+	flash("User %s added." % email)
+	return redirect("/")
+
 
 ##############################################################################
 						## LOGOUT ROUTES ##
