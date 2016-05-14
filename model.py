@@ -99,11 +99,11 @@ class UserEvent (db.Model):
 
 # Define relationship to user
 	user = db.relationship("User",
-						backref="users")
+						backref="userevents")
 
 # Define relationship to event
 	event = db.relationship("Event",
-						 backref="events")
+						 backref="userevents")
 	
 class UserAttraction (db.Model):
 	"""Table of saved attraction in user agenda."""
@@ -115,8 +115,8 @@ class UserAttraction (db.Model):
 	attraction_id = db.Column(db.Integer, db.ForeignKey('attractions.attraction_id'))
 	
 	 # Define relationship to user
-	user = db.relationship("User",
-						backref="users")
+	usera = db.relationship("User",
+						backref="userattraction")
 
 ##############################################################################
 # Helper functions
@@ -136,4 +136,7 @@ if __name__ == "__main__":
 
 	connect_to_db(app)
 	print "Connected to DB."
+
+#  ellen = User(firstname="ellen", lastname="blakeley", email="eb@gmail.com", password="123", phone=1234567, zipcode=123456)
+
 

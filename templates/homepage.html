@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="search">
   <h1>Search by destination</h1>
-  <form action="/process_search" method="POST">
+  <p><form action="/process_search" method="POST">
     Enter a location:
   <input type="text" name="location">
   <input type="submit">
-  </form>
-
+  </form></p>
+</div>
 {% endblock %}

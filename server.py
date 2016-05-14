@@ -1,8 +1,6 @@
 
 ##############################################################################
-				##### CONTROLLER, ROUTES, VIEW  ####
-##############################################################################
-#!/usr/bin/python -tt
+
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
@@ -13,7 +11,7 @@ import os
 import yelp_results
 import json
 
-# IMPORTED MODEL TABLES TO ROUTES
+############################################# IMPORTED MODEL TABLES TO ROUTES
 from model import User, Event, Attraction, Detail, UserEvent, UserAttraction
 from model import connect_to_db, db
 
@@ -28,10 +26,10 @@ app.secret_key = "ABC"
 # This is horrible. Fix this so that, instead, it raises an error.
 app.jinja_env.undefined = StrictUndefined
 
-
+##############################################################################
 ##############################################################################
 							# HOME PAGE/SEARCH FIELD
-##############################################################################
+
 
 @app.route('/')
 def index():
@@ -40,39 +38,55 @@ def index():
 	return render_template("homepage.html")
 
 ##############################################################################
-							# SEARCH PROCESS AND RESULTS
 ##############################################################################
+							# SEARCH PROCESS AND RESULTS
+
 
 @app.route("/process_search", methods=["POST"])
 def search_process():
 	"""Search events."""
 	
 	location = request.form.get('location')
+	term = request.form.get('term')
+	
 
-	api_results = yelp_results.get_business_results(location)
+	api_results = yelp_results.get_business_results(location, term)
+	
 	return render_template("search_results.html", api_results=api_results)
 
-# @app.route("/search_results", methods=["POST"])
-# def search_results():
-# 	"""Search events."""
-	
-# 	location = request.form.get('location')
 
-# 	attractions = yelp_results.find_attractions(location, term)
-# 	restaurants = yelp_results.find_restaurants(location, term)
-
-	
-	# return render_template("results_page.html", attractions=attractions, restaurants=restaurants)
-
+##############################################################################
 ##############################################################################
 							# SEARCH PROCESS AND RESULTS
-##############################################################################
+
 
 @app.route("/add_to_attractions", methods=['POST'])
 def add_to_attractions():
 	"""Ajax route to add events and add the event to the user agenda."""
 	
+	# query yelp data
+	user_id = request.args.get("user_id")
 	api_id = request.args.get("api_id")
+	details_id = request.args.get("details_id")
+	category = request.args.get("category")
+	name = request.args.get("name")
+	latitude = request.args.get("latitude")
+	longitutde = request.args.get("longitutde")
+	address = request.args.get("address")
+	city = request.args.get("city")
+	country = request.args.get("country")
+	phone = request.args.get("phone")
+	image = request.args.get("image")
+
+	# check to see if api id is in DB
+	find_attraction = Attraction.query.filter_by(api_id).first()
+	# if not, add to DB
+	if not find_attraction:
+		added_attraction = Attraction(attraction_id=attraction_id, details_id = details_id, api_id =api_id)
+
+	db.session.add(added_attraction)
+	db.session.commit()
+
 
 @app.route("/my_agenda")
 def my_agenda():
@@ -84,10 +98,9 @@ def attractions_to_events():
 
 
 
-
 ##############################################################################
-						## LOGIN ROUTES ##
 ##############################################################################
+								# LOGIN ROUTES 
 
 @app.route('/login', methods=['GET'])
 def login_form():
@@ -120,8 +133,9 @@ def login_process():
 	return redirect("/")
 
 ##############################################################################
-						## REGISTER ROUTES ##
 ##############################################################################
+							# REGISTER ROUTES 
+
 
 @app.route('/register', methods=['GET'])
 def register_form():
@@ -143,7 +157,7 @@ def register_process():
 	phone = request.form["phone"]
 	zipcode = request.form["zipcode"]
 
-	new_user = User(email=email, password=password, firstname=first,
+	new_user = User(email=email, password=password, firstname=firstname,
 	lastname=lastname, phone=phone, zipcode=zipcode)
 
 	db.session.add(new_user)
@@ -152,10 +166,10 @@ def register_process():
 	flash("User %s added." % email)
 	return redirect("/")
 
+##############################################################################
+##############################################################################
+							# LOGOUT ROUTES 
 
-##############################################################################
-						## LOGOUT ROUTES ##
-##############################################################################
 
 @app.route('/logout')
 def logout():
@@ -165,10 +179,10 @@ def logout():
 	flash("Logged Out.")
 	return redirect("/")
 
+##############################################################################
+##############################################################################
+							# HELPER FUNCTIONS
 
-##############################################################################
-						# HELPER FUNCTIONS
-##############################################################################
 
 if __name__ == "__main__":
 	# We have to set debug=True here, since it has to be True at the point
