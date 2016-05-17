@@ -2,10 +2,24 @@
 {% block content %}
 <div class="search">
   <h1>Search by destination</h1>
+  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ 
+<script>
+  $(document).ready(function() {
+    $("#datepicker").datepicker();
+  });
+  </script>
   <p><form action="/process_search" method="POST">
     Enter a location:
-  <input type="text" name="location">
-  <input type="submit">
-  </form></p>
+  <input type="text" name="location"><br>
+    
+    Enter a date:
+ <input id="datepicker"><br>
+ <input type="submit">
+ </form></p>
+
 </div>
 {% endblock %}

@@ -84,6 +84,7 @@ class Detail(db.Model):
 	country = db.Column(db.String(40))
 	phone = db.Column(db.Integer)
 	image = db.Column(db.String(40))
+	url = db.Column(db.String(100))
 
 class UserEvent (db.Model):
 	"""Table of saved events in user agenda."""

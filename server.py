@@ -1,14 +1,18 @@
+### Date range, integrate into eventbrite_results.py + server.py. Datetime formatting.
+### 
 
+### Details table doesnt cover similar enough field for EB and yelp data? rework data model?
 ##############################################################################
 
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from datetime import datetime
 from yelpapi import YelpAPI 
 from pprint import pprint
 import os 
 import yelp_results
+import eventbrite_results
 import json
 
 ############################################# IMPORTED MODEL TABLES TO ROUTES
@@ -44,15 +48,23 @@ def index():
 
 @app.route("/process_search", methods=["POST"])
 def search_process():
-	"""Search events."""
+	"""Process the search and show results"""
 	
 	location = request.form.get('location')
 	term = request.form.get('term')
+	q = request.form.get('q')
+	date = request.form.get('date')
 	
+	print date
 
-	api_results = yelp_results.get_business_results(location, term)
+	# date.s = date.strftime("%Y-%m-%d")
+	# print date.s
+
+	yelp_result = yelp_results.get_business_results(location, term)
+	eventbrite_result = eventbrite_results.get_event_results(q)
 	
-	return render_template("search_results.html", api_results=api_results)
+	return render_template("search_results.html", yelp_result=yelp_result, eventbrite_result=eventbrite_result)
+
 
 
 ##############################################################################
@@ -62,21 +74,21 @@ def search_process():
 
 @app.route("/add_to_attractions", methods=['POST'])
 def add_to_attractions():
-	"""Ajax route to add events and add the event to the user agenda."""
+	"""Ajax route to add attractions and add the attraction to the user agenda."""
 	
 	# query yelp data
-	user_id = request.args.get("user_id")
+	user_id = session['user_id']
 	api_id = request.args.get("api_id")
 	details_id = request.args.get("details_id")
-	category = request.args.get("category")
 	name = request.args.get("name")
+	location = request.args.get("address")
 	latitude = request.args.get("latitude")
 	longitutde = request.args.get("longitutde")
-	address = request.args.get("address")
-	city = request.args.get("city")
-	country = request.args.get("country")
 	phone = request.args.get("phone")
 	image = request.args.get("image")
+	url = request.args.get("url")
+	rating = request.args.get("rating")
+	review_count = request.args.get("review_count")
 
 	# check to see if api id is in DB
 	find_attraction = Attraction.query.filter_by(api_id).first()
@@ -87,14 +99,39 @@ def add_to_attractions():
 	db.session.add(added_attraction)
 	db.session.commit()
 
+@app.route("/add_to_events", methods=['POST'])
+def add_to_events():
+	"""Ajax route to add events and add the event to the user agenda."""
+
+	user_id = session['user_id']
+	
+	# query EB data
+	api_id = request.args.get("id")
+	details_id = request.args.get("details_id")
+	name = request.args.get("name")
+	start = request.args.get("latitude")
+	country = request.args.get("locale")
+	url = request.args.get("url")
+
+	# check to see if api id is in DB
+	find_event = Event.query.filter_by(api_id).first()
+	# if not, add to DB
+	if not find_event:
+		added_event = Event(event_id=attraction_id, details_id = details_id, api_id =api_id)
+
+	db.session.add(added_event)
+	db.session.commit()
+
+@app.route("/attractions_to_events")
+def attractions_to_events():
+	"""Whens user submits dates in input field for attractions, they are now saved as events(by adding date)."""
 
 @app.route("/my_agenda")
 def my_agenda():
 	"""Render user's saved events and attractions."""
 
-@app.route("/attractions_to_events")
-def attractions_to_events():
-	"""Whens user submits dates in input field for attractions, they are now saved as events(by adding date)."""
+	render_template ("my_agenda.html")
+
 
 
 
