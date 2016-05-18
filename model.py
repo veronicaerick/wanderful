@@ -42,10 +42,13 @@ class Event(db.Model):
 	__tablename__ = "events"
 
 	event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-	details_id = db.Column(db.Integer, db.ForeignKey('details.details_id'))
-	api_id  = db.Column(db.String(40))
-	date = db.Column(db.DateTime)
-
+	api_id  = db.Column(db.String(100))
+	name = db.Column(db.String(100))
+	start = db.Column(db.String(100))
+	status = db.Column(db.String(100))
+	locale = db.Column(db.String(20))
+	url = db.Column(db.String(1000))
+     
 	def __repr__(self):
 		"""Provide helpful representation when printed."""
 
@@ -59,44 +62,33 @@ class Attraction(db.Model):
 	__tablename__ = "attractions"
 
 	attraction_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-	details_id = db.Column(db.Integer, db.ForeignKey('details.details_id'))
 	api_id = db.Column(db.String(40))
-	rating = db.Column(db.String(40))
-
-	def __repr__(self):
-		"""Provide helpful representation when printed."""
-
-		return "<User attraction_id=%s category=%s >" % (
-			self.event_id, self.category)
-
-class Detail(db.Model):
-	"""Table of details."""
-
-	__tablename__ = "details"
-
-	details_id = db.Column(db.Integer, primary_key= True)
-	category = db.Column(db.String(30))
-	name = db.Column(db.String(30))
+	name = db.Column(db.String(100))
+	location = db.Column(db.String(40))
 	latitude = db.Column(db.Integer)
 	longitutde = db.Column(db.Integer)
-	address = db.Column(db.String(30))
-	city = db.Column(db.String(40))
-	country = db.Column(db.String(40))
+	rating = db.Column(db.String(40))
+	review_count = db.Column(db.String(10))
 	phone = db.Column(db.Integer)
 	image = db.Column(db.String(40))
 	url = db.Column(db.String(100))
 
+	def __repr__(self):
+		"""Provide helpful representation when printed."""
+
+		return "<User attraction_id=%s >" % (
+			self.event_id)
+
+
 class UserEvent (db.Model):
 	"""Table of saved events in user agenda."""
 
-	__tablename__ = "userevent"
+	__tablename__ = "userevents"
 
 	user_event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 	event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'))
 	
-	# remind_id = db.Column(db.String(40))
-
 
 # Define relationship to user
 	user = db.relationship("User",
@@ -109,7 +101,7 @@ class UserEvent (db.Model):
 class UserAttraction (db.Model):
 	"""Table of saved attraction in user agenda."""
 
-	__tablename__ = "userattraction"
+	__tablename__ = "userattractions"
 
 	userattraction_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
@@ -117,7 +109,7 @@ class UserAttraction (db.Model):
 	
 	 # Define relationship to user
 	usera = db.relationship("User",
-						backref="userattraction")
+						backref="userattractions")
 
 ##############################################################################
 # Helper functions

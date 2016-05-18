@@ -6,7 +6,8 @@
      <!-- Bootstrap -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style.css">
-
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/static/script.js"></script>
 
 </head>
 <body>
@@ -15,6 +16,7 @@
 
 {% if "user_id" in session %}
     <a href="/logout">Logout</a>
+    <a href="/my_agenda">My Agenda</a>
 {% else %}
     <a href="/login">Login</a>
     <a href="/register">Register</a>
@@ -32,8 +34,8 @@
     Put your body here.
 {% endblock %}
 
+<!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="javascript" src="/static/script.js"></script>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
 </body>
 </html>

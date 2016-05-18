@@ -1,5 +1,4 @@
-### Date range, integrate into eventbrite_results.py + server.py. Datetime formatting.
-### 
+## data attributes 
 
 ### Details table doesnt cover similar enough field for EB and yelp data? rework data model?
 ##############################################################################
@@ -16,7 +15,7 @@ import eventbrite_results
 import json
 
 ############################################# IMPORTED MODEL TABLES TO ROUTES
-from model import User, Event, Attraction, Detail, UserEvent, UserAttraction
+from model import User, Event, Attraction, UserEvent, UserAttraction
 from model import connect_to_db, db
 
 ##############################################################################
@@ -46,25 +45,21 @@ def index():
 							# SEARCH PROCESS AND RESULTS
 
 
-@app.route("/process_search", methods=["POST"])
+@app.route("/process_search", methods=["GET"])
 def search_process():
 	"""Process the search and show results"""
 	
-	location = request.form.get('location')
-	term = request.form.get('term')
-	q = request.form.get('q')
-	date = request.form.get('date')
-	
-	print date
+	location = request.args.get('location')
+	term = request.args.get('term')
+	datestring = request.args.get('date')
 
-	# date.s = date.strftime("%Y-%m-%d")
-	# print date.s
+	# print "date", type(datestring)
+	# print "location", location
 
 	yelp_result = yelp_results.get_business_results(location, term)
-	eventbrite_result = eventbrite_results.get_event_results(q)
+	eventbrite_result = eventbrite_results.get_event_results(location, datestring)
 	
-	return render_template("search_results.html", yelp_result=yelp_result, eventbrite_result=eventbrite_result)
-
+	return render_template("search_results.html", location=location,yelp_result=yelp_result, eventbrite_result=eventbrite_result)
 
 
 ##############################################################################
@@ -78,49 +73,56 @@ def add_to_attractions():
 	
 	# query yelp data
 	user_id = session['user_id']
-	api_id = request.args.get("api_id")
-	details_id = request.args.get("details_id")
-	name = request.args.get("name")
-	location = request.args.get("address")
-	latitude = request.args.get("latitude")
-	longitutde = request.args.get("longitutde")
-	phone = request.args.get("phone")
-	image = request.args.get("image")
-	url = request.args.get("url")
-	rating = request.args.get("rating")
-	review_count = request.args.get("review_count")
+
+	# grab yelp API results
+	api_id = request.form.get("id")
+	name = request.form.get("name")
+	location = request.form.get("address")
+	latitude = request.form.get("latitude")
+	longitude = request.form.get("longitude")
+	phone = request.form.get("phone")
+	image = request.form.get("image")
+	url = request.form.get("url")
+	rating = request.form.get("rating")
+	review_count = request.form.get("review_count")
 
 	# check to see if api id is in DB
-	find_attraction = Attraction.query.filter_by(api_id).first()
+	find_attraction = Attraction.query.filter_by(name=name).first()
 	# if not, add to DB
 	if not find_attraction:
-		added_attraction = Attraction(attraction_id=attraction_id, details_id = details_id, api_id =api_id)
+		add_attraction = Attraction(name=name, location=location, latitude=latitude,
+									longitude=longitude, phone=phone, image=image, url=url,
+									rating=rating, review_count=review_count)
 
-	db.session.add(added_attraction)
+	db.session.add(add_attraction)
 	db.session.commit()
+
+	return "it worked"
 
 @app.route("/add_to_events", methods=['POST'])
 def add_to_events():
 	"""Ajax route to add events and add the event to the user agenda."""
 
 	user_id = session['user_id']
-	
+
 	# query EB data
-	api_id = request.args.get("id")
-	details_id = request.args.get("details_id")
-	name = request.args.get("name")
-	start = request.args.get("latitude")
-	country = request.args.get("locale")
-	url = request.args.get("url")
+	api_id = request.form.get("id")
+	name = request.form.get("name")
+	start = request.form.get("start")
+	status = request.form.get("status")
+	url = request.form.get("url")
+	locale = request.form.get("locale")
 
 	# check to see if api id is in DB
-	find_event = Event.query.filter_by(api_id).first()
+	find_event = Event.query.filter_by(name=name).first()
 	# if not, add to DB
 	if not find_event:
-		added_event = Event(event_id=attraction_id, details_id = details_id, api_id =api_id)
+		add_event = Event(name=name, start=start, status=status, url=url, locale=locale)
 
-	db.session.add(added_event)
+	db.session.add(add_event)
 	db.session.commit()
+
+	return "it worked"
 
 @app.route("/attractions_to_events")
 def attractions_to_events():
