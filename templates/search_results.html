@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<!--Page Content-->
+    <div class="container">
+        <div class="row">
+            <h1 class ="headings"> Results for {{location}}: </h1>
+
+        </div>
+    </div>
+
+
+
+
+    {% for result in yelp_result %}
+        <button type="button" id="{{result.id}}" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}" class="yelp-results-btn">
+            <div value="{{result.id}}">
+        <h4>{{ result.name }} </h4>   
+
+        {% for item in result.location %}
+        {{ item }}
+
+         <br>
+        
+
+        {% endfor %}
+        <em>rating</em> {{ result.rating }} <br> 
+        
+
+            <img src="{{ result.image }}"></div></button>   
+
+{% endfor %}
+
+<br>
+<br>
+<br>
+
+{% for event in eventbrite_result %}
+
+<button type="button" data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}" data class="eventbrite-results-btn" id="{{ event.id }}">
+    <h4>{{ event.name }} </h4> 
+        {% if event.image %}
+            <img src="{{ event.image }}">
+            {% else %}
+                <img src="default" >
+        {% endif %}
+</button>
+
+{% endfor %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/script.js"></script>
+
+{% endblock %}
+

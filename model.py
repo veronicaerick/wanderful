@@ -26,14 +26,14 @@ class User(db.Model):
 	lastname = db.Column(db.String(20))
 	email = db.Column(db.String(64))
 	password = db.Column(db.String(64))
-	phone = db.Column(db.Integer)
-	zipcode = db.Column(db.Integer)
+	phone = db.Column(db.String(30))
+	zipcode = db.Column(db.String(30))
 
 	def __repr__(self):
 		"""Provide helpful representation when printed."""
 
-		"<User user_name=%s firstname=%s lastname=%s email=%s >" % (
-			self.user_name, self.fname, self.lname, self.email)
+		"<User firstname=%s lastname=%s email=%s >" % (
+			self.firstname, self.lastname, self.email)
 
 
 class Event(db.Model):
@@ -42,19 +42,18 @@ class Event(db.Model):
 	__tablename__ = "events"
 
 	event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-	api_id  = db.Column(db.String(100))
-	name = db.Column(db.String(100))
-	start = db.Column(db.String(100))
-	status = db.Column(db.String(100))
-	locale = db.Column(db.String(20))
+	name = db.Column(db.String(1000))
+	start = db.Column(db.String(1000))
+	status = db.Column(db.String(1000))
+	locale = db.Column(db.String(50))
 	url = db.Column(db.String(1000))
      
 	def __repr__(self):
 		"""Provide helpful representation when printed."""
 
 		
-		return "<User event_id=%s category=%s >" % (
-			self.event_id, self.category)
+		return "<Event event_id=%s name=%s >" % (
+			self.event_id, self.name)
 
 class Attraction(db.Model):
 	"""Table of attraction information."""
@@ -62,22 +61,21 @@ class Attraction(db.Model):
 	__tablename__ = "attractions"
 
 	attraction_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-	api_id = db.Column(db.String(40))
 	name = db.Column(db.String(100))
-	location = db.Column(db.String(40))
+	location = db.Column(db.String())
 	latitude = db.Column(db.Integer)
 	longitutde = db.Column(db.Integer)
 	rating = db.Column(db.String(40))
 	review_count = db.Column(db.String(10))
-	phone = db.Column(db.Integer)
+	phone = db.Column(db.String(20))
 	image = db.Column(db.String(40))
-	url = db.Column(db.String(100))
+	url = db.Column(db.String(500))
 
 	def __repr__(self):
 		"""Provide helpful representation when printed."""
 
 		return "<User attraction_id=%s >" % (
-			self.event_id)
+			self.attraction_id, self.name)
 
 
 class UserEvent (db.Model):
@@ -108,8 +106,11 @@ class UserAttraction (db.Model):
 	attraction_id = db.Column(db.Integer, db.ForeignKey('attractions.attraction_id'))
 	
 	 # Define relationship to user
-	usera = db.relationship("User",
+	user = db.relationship("User",
 						backref="userattractions")
+
+	attraction = db.relationship("Attraction",
+						 backref="userattractions")
 
 ##############################################################################
 # Helper functions

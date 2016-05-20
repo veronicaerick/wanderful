@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Your saved attractions: </h1>
+
+{% for item in userattractions %}
+   
+ {{ item.attraction.name }}
+
+{% endfor %} -->
+
+<br>
+<br>
+<br>
+
+<h1>Your saved events: </h1>
+
+{% for item in userevents %}
+
+<div class="evresults">{{ item.event.name }}<br> {{ item.event.start }}</div>
+
+
+{% endfor %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/script.js"></script>
+
+
+{% endblock %}

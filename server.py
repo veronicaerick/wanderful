@@ -1,5 +1,5 @@
 ## data attributes 
-
+## have two route, first route is a wait page. on page have JS do an ajax call as soon as page loads to get second route results 
 ### Details table doesnt cover similar enough field for EB and yelp data? rework data model?
 ##############################################################################
 
@@ -70,12 +70,8 @@ def search_process():
 @app.route("/add_to_attractions", methods=['POST'])
 def add_to_attractions():
 	"""Ajax route to add attractions and add the attraction to the user agenda."""
-	
-	# query yelp data
-	user_id = session['user_id']
 
 	# grab yelp API results
-	api_id = request.form.get("id")
 	name = request.form.get("name")
 	location = request.form.get("address")
 	latitude = request.form.get("latitude")
@@ -89,40 +85,76 @@ def add_to_attractions():
 	# check to see if api id is in DB
 	find_attraction = Attraction.query.filter_by(name=name).first()
 	# if not, add to DB
-	if not find_attraction:
+	if find_attraction:
+		add_attraction = find_attraction
+	else:
 		add_attraction = Attraction(name=name, location=location, latitude=latitude,
-									longitude=longitude, phone=phone, image=image, url=url,
+									phone=phone, image=image, url=url,
 									rating=rating, review_count=review_count)
+		db.session.add(add_attraction)
+		db.session.commit()
 
-	db.session.add(add_attraction)
+	# print add_attraction
+	user = User.query.get(session['user_id'])	
+	attraction = Attraction.query.get(add_attraction.attraction_id)
+	
+	print user.user_id
+	print add_attraction.attraction_id
+	
+	userattraction = UserAttraction(user_id=user.user_id, attraction_id=attraction.attraction_id)
+	db.session.add(userattraction)
 	db.session.commit()
-
-	return "it worked"
+	return "yay"
 
 @app.route("/add_to_events", methods=['POST'])
 def add_to_events():
 	"""Ajax route to add events and add the event to the user agenda."""
 
-	user_id = session['user_id']
-
 	# query EB data
-	api_id = request.form.get("id")
 	name = request.form.get("name")
 	start = request.form.get("start")
 	status = request.form.get("status")
 	url = request.form.get("url")
 	locale = request.form.get("locale")
+	print start
+	# strptime to make it date and strftime to format to user view
 
 	# check to see if api id is in DB
 	find_event = Event.query.filter_by(name=name).first()
 	# if not, add to DB
+	if find_event:
+		add_event = find_event
+		flash("Already added to your agenda")
 	if not find_event:
-		add_event = Event(name=name, start=start, status=status, url=url, locale=locale)
+		add_event = Event(name=name, start=start, status=status,
+									url=url, locale=locale)
+		db.session.add(add_event)
+		db.session.commit()
 
-	db.session.add(add_event)
+	user = User.query.get(session['user_id'])
+	event = Event.query.get(add_event.event_id)
+
+	# print user.user
+	# print event
+
+	userevent = UserEvent(user_id=user.user_id, event_id=event.event_id)
+	db.session.add(userevent)
 	db.session.commit()
+	return "yay"
 
-	return "it worked"
+@app.route("/delete_attr", methods=["POST"])
+def delete_attr():
+    """Allows user to remove attr from DB"""
+
+    attraction_id = request.form.get('attraction_id')
+    find_attraction = Attraction.query.filter_by(attraction_id=attraction_id).first()
+   	
+    db.session.delete(find_attraction)
+    db.session.commit()
+
+    return "whooo"
+
+@app.route("/attractions_to_events")
 
 @app.route("/attractions_to_events")
 def attractions_to_events():
@@ -132,7 +164,12 @@ def attractions_to_events():
 def my_agenda():
 	"""Render user's saved events and attractions."""
 
-	render_template ("my_agenda.html")
+	user = User.query.get(session['user_id'])
+	userattractions = UserAttraction.query.filter_by(user_id=user.user_id).all()
+	userevents = UserEvent.query.filter_by(user_id=user.user_id).all()
+	
+
+	return render_template("my_agenda.html", user=user, userattractions=userattractions, userevents=userevents)
 
 
 
@@ -171,6 +208,7 @@ def login_process():
 	flash("Logged in")
 	return redirect("/")
 
+
 ##############################################################################
 ##############################################################################
 							# REGISTER ROUTES 
@@ -201,6 +239,9 @@ def register_process():
 
 	db.session.add(new_user)
 	db.session.commit()
+
+	user = User.query.filter_by(email=email).first()
+	session["user_id"] = user.user_id
 
 	flash("User %s added." % email)
 	return redirect("/")

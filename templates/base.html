@@ -15,8 +15,10 @@
 
 
 {% if "user_id" in session %}
-    <a href="/logout">Logout</a>
+    <a href="/">Home</a>
     <a href="/my_agenda">My Agenda</a>
+    <a href="/logout">Logout</a>
+   
 {% else %}
     <a href="/login">Login</a>
     <a href="/register">Register</a>
@@ -34,8 +36,6 @@
     Put your body here.
 {% endblock %}
 
-<!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="javascript" src="/static/script.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+
 </body>
 </html>

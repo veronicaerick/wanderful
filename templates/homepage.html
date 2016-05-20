@@ -2,18 +2,22 @@
 {% block content %}
 
 
-
-<div class="search">
-  <h1>Search by destination</h1>
+<div class="container">
+    <div class="search">
+        <h2>Search by destination</h2>
   
-  <p><form action="/process_search" method="GET">
-    Enter a location:
-  <input type="text" name="location"><br>
+            <form action="/process_search" method="GET">
+                <div class="info-holder">
+                <label for="location">Enter a location:</label>
+                <input type="text" name="location">
+                </div>
     
-    Enter a date:
- <input type="date" name="date"><br>
- <input type="submit">
- </form></p>
-
+                <div class="info-holder">
+                <label for="date">Enter a date:</label> 
+                <input type="date" name="date">
+                </div>
+                <input type="submit">
+            </form>
+    </div>
 </div>
 {% endblock %}
