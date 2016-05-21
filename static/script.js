@@ -34,7 +34,7 @@ function addAttraction (evt) {
 }
 
 
-$('.yelp-results-btn').click(addAttraction);
+$('#myBtn').click(addAttraction);
 
 ////////////////// ADD EVENT to database ///////////////////////////
 
@@ -103,9 +103,9 @@ $('#delev').click(delEvent);
 
 $(document).ready(function(){
     $("#myBtn").click(function(){
-        $("#saveAttraction").modal();
+        $("#myModal").modal();
     });
-
+});
 
 
 

@@ -1,3 +1,5 @@
+<!--Modal to trigger saving attraction information to database, which ID do I use?
+
 {% extends 'base.html' %}
 {% block content %}
 
@@ -13,43 +15,41 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12" style="background-color:lavender;">              {% for result in yelp_result %}
+    <div class="col-sm-4" style="background-color:lavender;">              {% for result in yelp_result %}
             <div id="{{result.id}}" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}" class="yelp-results-btn" data-toggle="modal" data-target="#saveAttraction">
-<div class="container">
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" id="myBtn">Save Attraction</button>
+            <div class="container">
+          <!-- Trigger the modal with a button -->
 
-  <!-- Modal -->
-  <div class="modal fade" id="saveAttraction" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <!-- Modal -->
+          <div class="modal fade" id="saveAttraction" role="dialog">
+            <div class="modal-dialog">
+            
+            <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 style="color:black"class="modal-title">Want to save this attraction to your agenda?</h4>
+                    </div>
+                    <div class="modal-footer">
+                    <button id="myBtn" type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                </div>
+              </div>
+            </div>
+          </div> 
         </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-            <div value="{{result.id}}">
-                <h4>{{ result.name }} </h4>   
+        <div value="{{result.id}}">
+            <h4>{{ result.name }} </h4>   
                 {% for item in result.location %}
                 {{ item }}
                  <br>
                 {% endfor %}
-                <em>rating</em> {{ result.rating }} <br> 
-                <img class="yelp-result-img"src="{{ result.image }}"></div></div>   
-            {% endfor %} </div>
+                    <em>rating</em> {{ result.rating }} <br> 
+                    <img class="yelp-result-img"src="{{ result.image }}">
+
+                </div>
+                <button type="button" class="btn btn-info btn-lg" id="myBtn">Save Attraction</button>
+            </div>   
+        {% endfor %} </div>
     </div>
    </div> 
  
