@@ -12,21 +12,22 @@
 </head>
 <body>
 <!--Navigation Bar-->
-
+<nav class="navbar">
 
 {% if "user_id" in session %}
-    <a href="/">Home</a>
+    <a href="/" id="nav-home">Home</a></div>
     <a href="/my_agenda">My Agenda</a>
     <a href="/logout">Logout</a>
    
 {% else %}
+    <a href="/">Home</a>
     <a href="/login">Login</a>
     <a href="/register">Register</a>
 {% endif %}
 
+</nav>
 
 
-<hr>
 
 {% for flash in get_flashed_messages() %}
   {{ flash }}

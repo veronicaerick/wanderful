@@ -74,7 +74,7 @@ class Attraction(db.Model):
 	def __repr__(self):
 		"""Provide helpful representation when printed."""
 
-		return "<User attraction_id=%s >" % (
+		return "<User attraction_id=%s name=%s >" % (
 			self.attraction_id, self.name)
 
 

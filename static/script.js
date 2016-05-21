@@ -72,12 +72,16 @@ function removeAttrSuccess (result) {
 }
 
 function delAttr (evt) {
-  var attrId = $(this).data('attid');
-
+  var attrId = $(this).data('id');
   var attr = {
     'attraction_id': attrId}
 
-$.post('/delete_attr', attr, removeAttrSuccess)
-}
+  console.log(attr)
+  $.post('/delete_attr', attr, removeAttrSuccess)
+  }
 
-$('.delatt').click(delAttr);
+$('#delatt').click(delAttr);
+
+
+
+

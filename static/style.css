@@ -1,38 +1,35 @@
+/*NAVBAR*/
 
-.navbar-btn {
-    color: salmon;
-    padding: auto;
-    font-family: Verdana;
-    padding: auto;
+/*body { 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-/*.navbar-home {
-    color: salmon;
-    padding: auto;
-    font-family: Verdana;
-    padding: auto;
-}
-
-.navbar-agenda {
-    color: salmon;
-    padding: auto;
-}
-
-.navbar-logout {
-    color: salmon;
-    padding: auto;
+.home {
+    background: url("http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/07/Venice-Travel-HD-Wallpapers.jpg") no-repeat center center fixed;
+    background-position: center;
 }*/
 
-.container {
+/*.container {
     height: 10%;
     position: relative;
     text-align: center;
     display: flex;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 15%;
+}*/
+
+.navbar {
+    border: 2px solid black;
 }
 
-.search {
+.nav-home {
+    border: white 2px solid;
+}
+
+.login {
     color: skyblue;
     position: relative;
     width: 30%;
@@ -41,6 +38,26 @@
 }
 
 
+
+/*SEARCH */
+/*.container {
+    height: 5%;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding-top: 15%;
+}
+*/
+.search {
+    color: skyblue;
+    position: relative;
+    width: 30%;
+    height: 10%;
+    margin: auto;  
+}
+
+/*EVENT RESULTS */
 .eventbrite-results-btn {
     background-color: gray; /* Green */
     border: black 2px solid;
@@ -52,6 +69,7 @@
     font-size: 16px;
 }
 
+/*YELP RESULTS*/
 .yelp-results-btn {
     background-color: skyBlue; /* Green */
     border: black 2px solid;
@@ -63,6 +81,13 @@
     font-size: 16px;
 }
 
+.yelp-result-img {
+    size: relative;
+    height:12em;
+    width: 12em;
+}
+
+/* AGENDA RESULTS ATTRACTIONS*/
 .attresults {
     background-color: skyBlue; /* Green */
     border: black 2px solid;
@@ -73,7 +98,7 @@
     display: inline-block;
     font-size: 16px;
 }
-
+/* EVENT RESULTS ATTRACTIONS*/
 .evresults {
     background-color: grey; /* Green */
     border: black 2px solid;
@@ -84,4 +109,4 @@
     display: inline-block;
     font-size: 16px;
 }
-/*NAVBAR*/
+
