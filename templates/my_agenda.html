@@ -1,23 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if userattractions %}
 <h1>Your saved attractions: </h1>
+{% endif %}
 
-{% for item in userattractions %}
-   
+<div class="container-fluid">
+  <h1>Agenda</h1>
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">{% for item in userattractions %}
     <div> <a role="button" class="attresults" id="delatt" data-id="{{ item.attraction.attraction_id }}"> {{ item.attraction.name }} </a></div>
+    {% endfor %} </div>
+  </div>
+</div>
 
-{% endfor %} 
 
 <br>
 <br>
 <br>
-
+{% if userevents %}
 <h1>Your saved events: </h1>
-
+{% endif %}
 {% for item in userevents %}
 
-<div class="evresults">{{ item.event.name }}<br> {{ item.event.start }}</div>
+    <div> <a role="button" class="evresults" id="delev" data-id="{{ item.event.event_id }}">{{ item.event.name }}<br> {{ item.event.start }}</a></div>
 
 
 {% endfor %}

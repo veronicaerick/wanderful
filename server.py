@@ -1,6 +1,6 @@
-## BUG- attractions wont connect in jinja template with item loop
+
 ## have two route, first route is a wait page. on page have JS do an ajax call as soon as page loads to get second route results 
-### Details table doesnt cover similar enough field for EB and yelp data? rework data model?
+### 
 ##############################################################################
 
 from jinja2 import StrictUndefined
@@ -156,6 +156,19 @@ def delete_attr():
 
     return "whooo"
 
+@app.route("/delete_event", methods=["POST"])
+def delete_event():
+    """Allows user to remove event from DB"""
+
+    user = User.query.get(session['user_id'])
+    event_id = request.form.get('event_id')
+    
+    find_event = UserEvent.query.filter_by(user_id=user.user_id, event_id=event_id).first()
+   	
+    db.session.delete(find_event)
+    db.session.commit()
+
+    return "whooo"
 
 @app.route("/attractions_to_events")
 def attractions_to_events():

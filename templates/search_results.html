@@ -11,47 +11,71 @@
         </div>
     </div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12" style="background-color:lavender;">              {% for result in yelp_result %}
+            <div id="{{result.id}}" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}" class="yelp-results-btn" data-toggle="modal" data-target="#saveAttraction">
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" id="myBtn">Save Attraction</button>
 
-
-
-    {% for result in yelp_result %}
-        <button type="button" id="{{result.id}}" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}" class="yelp-results-btn">
+  <!-- Modal -->
+  <div class="modal fade" id="saveAttraction" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
             <div value="{{result.id}}">
-        <h4>{{ result.name }} </h4>   
-
-        {% for item in result.location %}
-        {{ item }}
-
-         <br>
-        
-
-        {% endfor %}
-        <em>rating</em> {{ result.rating }} <br> 
-        
-
-            <img class="yelp-result-img"src="{{ result.image }}"></div></button>   
-
-{% endfor %}
+                <h4>{{ result.name }} </h4>   
+                {% for item in result.location %}
+                {{ item }}
+                 <br>
+                {% endfor %}
+                <em>rating</em> {{ result.rating }} <br> 
+                <img class="yelp-result-img"src="{{ result.image }}"></div></div>   
+            {% endfor %} </div>
+    </div>
+   </div> 
+ 
 
 <br>
 <br>
 <br>
 
-{% for event in eventbrite_result %}
 
-<button type="button" data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}" data class="eventbrite-results-btn" id="{{ event.id }}">
-    <h4>{{ event.name }} </h4> 
-        {% if event.image %}
-            <img src="{{ event.image }}">
-            {% else %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12" style="background-color:lavender;"> {% for event in eventbrite_result %}
+        <button type="button" data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}" class="eventbrite-results-btn" id="{{ event.id }}">
+            <h4>{{ event.name }} </h4> 
+                {% if event.image %}
+                <img src="{{ event.image }}">
+                {% else %}
                 <img src="default" >
-        {% endif %}
-</button>
+            {% endif %}
+        </button>
+    {% endfor %}
+    {% endblock %}</div>
+  </div>
+</div>
+   
 
-{% endfor %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/script.js"></script>
-
-{% endblock %}
-

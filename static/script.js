@@ -65,7 +65,7 @@ $('.eventbrite-results-btn').click(addEvent);
 
 
 
-////////////////// DEL event from database ///////////////////////////
+////////////////// DEL attraction from database ///////////////////////////
 function removeAttrSuccess (result) {
   console.log('removed');
   alert('gone girl');
@@ -81,6 +81,32 @@ function delAttr (evt) {
   }
 
 $('#delatt').click(delAttr);
+
+////////////////// DEL event from database ///////////////////////////
+function removeEventSuccess (result) {
+  console.log('removed');
+  alert('YASSSS');
+}
+
+function delEvent (evt) {
+  var eventId = $(this).data('id');
+  var ev = {
+    'event_id': eventId}
+
+  $.post('/delete_event', ev, removeEventSuccess)
+  }
+
+$('#delev').click(delEvent);
+
+
+///////////////////// MODAL SAVE ATTRACTION //////////////////////
+
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#saveAttraction").modal();
+    });
+
+
 
 
 
