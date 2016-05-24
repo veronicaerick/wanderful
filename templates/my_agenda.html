@@ -1,35 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<h1>Agenda</h1>
+
 {% if userattractions %}
-<h1>Your saved attractions: </h1>
+    <h1>Your saved attractions: </h1>
 {% endif %}
 
-<div class="container-fluid">
-  <h1>Agenda</h1>
-  <div class="row">
-    <div class="col-sm-4" style="background-color:lavender;">{% for item in userattractions %}
-    <div> <a role="button" class="attresults" id="delatt" data-id="{{ item.attraction.attraction_id }}"> {{ item.attraction.name }} </a></div>
-    {% endfor %} </div>
-  </div>
-</div>
-
-
-<br>
-<br>
-<br>
-{% if userevents %}
-<h1>Your saved events: </h1>
-{% endif %}
-{% for item in userevents %}
-
-    <div> <a role="button" class="evresults" id="delev" data-id="{{ item.event.event_id }}">{{ item.event.name }}<br> {{ item.event.start }}</a></div>
-
-
+{% for item in userattractions %}
+    <div class="att-results" data-id="{{ item.attraction.attraction_id }}">
+        <h4>{{ item.attraction.name }} </h4>
+    </div>
 {% endfor %}
+
+
+<br>
+<br>
+<br>
+
+{% if userevents %}
+    <h1>Your saved events: </h1>
+{% endif %}
+
+
+{% for item in userevents %}
+    <div> <a role="button" class="event-results" data-id="{{ item.event.event_id }}">
+        {{ item.event.name }}<br> 
+        <div>
+        {% for item in item.event.start %}
+            {{ item }}
+        {% endfor %}
+        </div>
+        </a></div>
+{% endfor %}
+
+
+
+
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/script.js"></script>
-
 
 {% endblock %}

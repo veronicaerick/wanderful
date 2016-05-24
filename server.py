@@ -53,8 +53,8 @@ def search_process():
 	term = request.args.get('term')
 	datestring = request.args.get('date')
 
-	# print "date", type(datestring)
-	# print "location", location
+	print "date", type(datestring)
+	print "location", location
 
 	yelp_result = yelp_results.get_business_results(location, term)
 	eventbrite_result = eventbrite_results.get_event_results(location, datestring)
@@ -116,7 +116,11 @@ def add_to_events():
 	status = request.form.get("status")
 	url = request.form.get("url")
 	locale = request.form.get("locale")
+	
 	print start
+	# d = datetime.strptime(start, "%Y-%m-%d")
+	# print d
+
 	# strptime to make it date and strftime to format to user view
 
 	# check to see if api id is in DB
@@ -134,9 +138,6 @@ def add_to_events():
 	user = User.query.get(session['user_id'])
 	event = Event.query.get(add_event.event_id)
 
-	# print user.user
-	# print event
-
 	userevent = UserEvent(user_id=user.user_id, event_id=event.event_id)
 	db.session.add(userevent)
 	db.session.commit()
@@ -150,9 +151,12 @@ def delete_attr():
     attraction_id = request.form.get('attraction_id')
     
     find_attraction = UserAttraction.query.filter_by(user_id=user.user_id, attraction_id=attraction_id).first()
+    if find_attraction:
+    	db.session.delete(find_attraction)
+    	db.session.commit()
+	if not find_attraction:
+		return "didnt find attraction in DB"
    	
-    db.session.delete(find_attraction)
-    db.session.commit()
 
     return "whooo"
 

@@ -33,7 +33,7 @@ def get_event_results(q, datestring):
         else:
             image_url = None
         rendered_responses.append({'name': event['name']['html'],
-                                    'start': event['start']['local'],
+                                    'start': datetime.strptime(event['start']['local'], ('%Y-%m-%dT%H:%M:%S')),
                                     'status': event['status'],
                                     'url': event['url'], 
                                     'locale': event['locale'],

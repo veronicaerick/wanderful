@@ -1,26 +1,4 @@
 /*NAVBAR*/
-
-/*body { 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.home {
-    background: url("http://hdwallpaperbackgrounds.net/wp-content/uploads/2015/07/Venice-Travel-HD-Wallpapers.jpg") no-repeat center center fixed;
-    background-position: center;
-}*/
-
-/*.container {
-    height: 10%;
-    position: relative;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    padding-top: 15%;
-}*/
-
 .navbar {
     border: 2px solid black;
 }
@@ -37,18 +15,6 @@
     margin: auto;  
 }
 
-
-
-/*SEARCH */
-/*.container {
-    height: 5%;
-    position: relative;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    padding-top: 15%;
-}
-*/
 .search {
     color: skyblue;
     position: relative;
@@ -57,9 +23,9 @@
     margin: auto;  
 }
 
-/*EVENT RESULTS */
-.eventbrite-results-btn {
-    background-color: gray; /* Green */
+/*YELP RESULTS*/
+.yelp-results-btn {
+    background-color: skyBlue; /* Green */
     border: black 2px solid;
     color: white;
     padding: 15px 32px;
@@ -69,9 +35,9 @@
     font-size: 16px;
 }
 
-/*YELP RESULTS*/
-.yelp-results-btn {
-    background-color: skyBlue; /* Green */
+/*EVENT RESULTS */
+.eventbrite-results-btn {
+    background-color: gray; /* Green */
     border: black 2px solid;
     color: white;
     padding: 15px 32px;
@@ -88,7 +54,7 @@
 }
 
 /* AGENDA RESULTS ATTRACTIONS*/
-.attresults {
+.att-results {
     background-color: skyBlue; /* Green */
     border: black 2px solid;
     color: white;
@@ -99,7 +65,7 @@
     font-size: 16px;
 }
 /* EVENT RESULTS ATTRACTIONS*/
-.evresults {
+.event-results {
     background-color: grey; /* Green */
     border: black 2px solid;
     color: white;

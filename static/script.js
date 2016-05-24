@@ -1,5 +1,5 @@
 ////////////////// ADD ATTRACTION to database///////////////////////////
-
+console.log("JS Connected")
 function addAttractionSuccess (result) {
   alert("YAY");
 }
@@ -34,7 +34,7 @@ function addAttraction (evt) {
 }
 
 
-$('#myBtn').click(addAttraction);
+$('.yelp-results-btn').click(addAttraction);
 
 ////////////////// ADD EVENT to database ///////////////////////////
 
@@ -43,6 +43,7 @@ function addEventSuccess (result) {
 }
 
 function addEvent (evt) {
+  console.log("JAVASCRIPT FUNCTION")
   var eventId = $(this).data('id');
   var nameId = $(this).data('name');
   var startId = $(this).data('start');
@@ -80,7 +81,7 @@ function delAttr (evt) {
   $.post('/delete_attr', attr, removeAttrSuccess)
   }
 
-$('#delatt').click(delAttr);
+$('.att-results').click(delAttr);
 
 ////////////////// DEL event from database ///////////////////////////
 function removeEventSuccess (result) {
@@ -96,18 +97,10 @@ function delEvent (evt) {
   $.post('/delete_event', ev, removeEventSuccess)
   }
 
-$('#delev').click(delEvent);
-
-
-///////////////////// MODAL SAVE ATTRACTION //////////////////////
-
-$(document).ready(function(){
-    $("#myBtn").click(function(){
-        $("#myModal").modal();
-    });
-});
+$('.event-results').click(delEvent);
 
 
 
+///////////////////Modal Save Attraction /////////////////////////////
 
 
