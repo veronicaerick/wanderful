@@ -158,7 +158,7 @@ def delete_attr():
 		return "didnt find attraction in DB"
    	
 
-    return "whooo"
+    return attraction_id
 
 @app.route("/delete_event", methods=["POST"])
 def delete_event():
@@ -172,7 +172,7 @@ def delete_event():
     db.session.delete(find_event)
     db.session.commit()
 
-    return "whooo"
+    return event_id
 
 @app.route("/attractions_to_events")
 def attractions_to_events():

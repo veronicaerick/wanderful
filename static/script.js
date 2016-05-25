@@ -34,7 +34,7 @@ function addAttraction (evt) {
 }
 
 
-$('.yelp-results-btn').click(addAttraction);
+$('#saveAttractionModalBtn').click(addAttraction);
 
 ////////////////// ADD EVENT to database ///////////////////////////
 
@@ -62,13 +62,15 @@ function addEvent (evt) {
   $.post('/add_to_events', evt, addEventSuccess)
 }
 
-$('.eventbrite-results-btn').click(addEvent);
+$('#saveEventModalBtn').click(addEvent);
 
 
 
 ////////////////// DEL attraction from database ///////////////////////////
 function removeAttrSuccess (result) {
-  console.log('removed');
+  var attractionId = result;
+  var divToDelete = $("div[data-id=" + attractionId + "]");
+  divToDelete.remove();
   alert('gone girl');
 }
 
@@ -85,8 +87,10 @@ $('.att-results').click(delAttr);
 
 ////////////////// DEL event from database ///////////////////////////
 function removeEventSuccess (result) {
-  console.log('removed');
-  alert('YASSSS');
+  var eventId = result
+  console.log(eventId);
+  var divToDelete = $("div[data-id=" + eventId + "]");
+  divToDelete.remove();
 }
 
 function delEvent (evt) {
@@ -101,6 +105,57 @@ $('.event-results').click(delEvent);
 
 
 
-///////////////////Modal Save Attraction /////////////////////////////
+///////////////////Modal Details/Save Attraction /////////////////////////////
+$('#attractionModal').each(function(){
+  $(this).modal(options);
+});
+
+var options = {
+    "backdrop" : "static"
+}
+
+///////////////////Modal Detail/Save Event /////////////////////////////
+$('#eventModal').each(function(){
+  $(this).modal(options);
+});
+
+var options = {
+    "backdrop" : "static"
+}
+
+
+
+///////////// Google Maps JS ///////////////////////////////////////////
+
+// $(document).on('ready', function() {
+//   $('#attractionModal').on('click', function(evt) {
+//     var latitude = $(this).data('latitude');
+//     var longitude = $(this).data('longitude');
+//     var attrId = $(this).data('id');
+//   });
+// });
+
+// function initMap(lat,long) {
+
+//   // Specify where the map is centered
+//   var myLatLng = {lat: latitude, lng: longitude};
+//   // Create a map object and specify the DOM element for display.
+//   // center and zoom are required.
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//     center: myLatLng,
+//     zoom: 5,
+
+//   });
+
+//   var marker = new.google.maps.Marker({
+//     position: myLatLng
+//   });
+
+// google.maps.event.addDomListener(window, 'load', initMap);
+
+
+
+
+
 
 

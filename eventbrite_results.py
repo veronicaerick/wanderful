@@ -14,20 +14,17 @@ def get_event_results(q, datestring):
     # params = {"q": q, "start_date.range_start": datestring}
     start_date = datestring+"T00:00:00"
     end_date = datestring+"T23:59:59"
+    popular = True
+    # category = "Music"
     params = {"q": q, "start_date.range_start": start_date, 
-              "start_date.range_end": end_date}
+              "start_date.range_end": end_date, "popular": popular}
 
     search_response = client.event_search(**params)
     events = search_response.get('events', [])
     print events
     rendered_responses = []
     
-    # # 
     for event in events:
-    #     if event.logo and event.logo.url: 
-    #         test = event.logo.url
-    #     else:
-    #         test = 'abc'
         if event.get('logo'):
             image_url = event['logo']['url']
         else:

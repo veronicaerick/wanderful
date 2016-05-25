@@ -6,41 +6,86 @@
 
 
  {% for result in yelp_result %}
-        <div id="{{result.id}}" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}" class="yelp-results-btn">
-            <div value="{{result.id}}">
+  <!--    <div id="{{result.id}}" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}" class="yelp-results-btn">
+         <div value="{{result.id}}">  -->
                 <h4>{{ result.name }} </h4>   
                 {% for item in result.location %}
                 {{ item }}
-                 <br>
                 {% endfor %}
-            <em>rating</em> {{ result.rating }} <br>  
-            <img class="yelp-result-img"src="{{ result.image }}">
-        </div>
+                 <br>
+                <em>rating</em> {{ result.rating }} <br>  
+                <img class="yelp-result-img"src="{{ result.image }}"><br>
+                
+                <a href="#" class="btn btn-lg btn-success outline" 
+                data-toggle="modal" 
+                data-target="#attractionModal{{ result.id }}">Details</a>
+                
+                <div class="modal fade" id="attractionModal{{ result.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> About {{ result.name }}</button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ result.latitude }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="saveAttractionModalBtn">Save Attraction</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div> 
         </div>   
-        {% endfor %} 
+
+
+{% endfor %} 
   
 
 <br>
 <br>
 <br>
 
-
+<!-- Limit results in Jinja -->
 {% for event in eventbrite_result %}
-
-<div data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}" class="eventbrite-results-btn" id="{{ event.id }}">
-    <h4>{{ event.name }} </h4> 
-    {{ event.start.strftime('%Y/%m/%d')}}
+    <div data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}" class="eventbrite-results-btn" id="{{ event.id }}">
+        <h4>{{ event.name }} </h4>
+        <h4>{{ event.start.strftime('%m/%d/%Y')}}</h4>
         {% if event.image %}
-            <img src="{{ event.image }}">
-     <!--        {% else %}
-                <img src="default" > -->
-        {% endif %}
-</div>
-
+            <img class="eventbriteSearchImg" src="{{ event.image }}"><br>
+            {% else %}
+            <img class="eventbriteSearchImg" src="/static/images/defaultimg.jpg">
+            {% endif %}
+              
+              <a href="#" class="btn btn-lg btn-success" 
+                data-toggle="modal" 
+                data-target="#eventModal{{ event.id }}">Details</a>
+                <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">About {{ event.name }}</button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3>About {{ event.name }}</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="saveEventModalBtn">Save Event</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+           
+    </div>
 {% endfor %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery.js"></script>
+
+
 <script src="/static/script.js"></script>
 
 {% endblock %}
+
 
