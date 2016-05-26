@@ -8,6 +8,7 @@
     {% endif %}
         {% for item in userattractions %}
             <div class="att-results" data-id="{{ item.attraction.attraction_id }}">
+  
             <h4>{{ item.attraction.name }} </h4>
             </div>
         {% endfor %}
@@ -38,8 +39,7 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery.js"></script>
+
 <script src="/static/script.js"></script>
 
 {% endblock %}

@@ -18,7 +18,7 @@ def get_event_results(q, datestring):
     # category = "Music"
     params = {"q": q, "start_date.range_start": start_date, 
               "start_date.range_end": end_date, "popular": popular}
-
+              
     search_response = client.event_search(**params)
     events = search_response.get('events', [])
     print events

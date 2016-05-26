@@ -6,8 +6,9 @@
 
 
  {% for result in yelp_result %}
-  <!--    <div id="{{result.id}}" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}" class="yelp-results-btn">
-         <div value="{{result.id}}">  -->
+  <div>
+  <div class="yelp-results-btn" id="{{result.id}}">
+         <div value="{{result.id}}"> 
                 <h4>{{ result.name }} </h4>   
                 {% for item in result.location %}
                 {{ item }}
@@ -16,7 +17,8 @@
                 <em>rating</em> {{ result.rating }} <br>  
                 <img class="yelp-result-img"src="{{ result.image }}"><br>
                 
-                <a href="#" class="btn btn-lg btn-success outline" 
+
+                <a class="openModal" href="#" class="btn btn-lg btn-success outline" 
                 data-toggle="modal" 
                 data-target="#attractionModal{{ result.id }}">Details</a>
                 
@@ -28,18 +30,18 @@
                             <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
-                                <p>{{ result.latitude }}</p>
+                               <div id="map"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="saveAttractionModalBtn">Save Attraction</button>
+                                <button type="button" class="btn btn-primary saveAttractionModalBtn" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}">Save Attraction</button>
                         </div>
                     </div>
                   </div>
                 </div>
             </div> 
         </div>   
-
+    </div>
 
 {% endfor %} 
   
@@ -82,8 +84,8 @@
            
     </div>
 {% endfor %}
-
-
+<!-- Google maps API -->
+   
 <script src="/static/script.js"></script>
 
 {% endblock %}

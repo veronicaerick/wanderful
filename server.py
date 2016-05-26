@@ -178,6 +178,8 @@ def delete_event():
 def attractions_to_events():
 	"""Whens user submits dates in input field for attractions, they are now saved as events(by adding date)."""
 
+
+
 @app.route("/my_agenda")
 def my_agenda():
 	"""Render user's saved events and attractions."""
@@ -185,7 +187,6 @@ def my_agenda():
 	user = User.query.get(session['user_id'])
 
 	userattractions = UserAttraction.query.filter_by(user_id=user.user_id).all()
-	
 	userevents = UserEvent.query.filter_by(user_id=user.user_id).all()
 	
 
@@ -292,6 +293,6 @@ if __name__ == "__main__":
 	connect_to_db(app)
 
 	# Use the DebugToolbar
-	DebugToolbarExtension(app)
+	# DebugToolbarExtension(app)
 
 	app.run()
