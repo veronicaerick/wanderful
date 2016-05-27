@@ -1,6 +1,6 @@
 "use strict";
 ////////////////// ADD ATTRACTION to database///////////////////////////
-console.log("JS Connected")
+console.log("JS Connected");
 function addAttractionSuccess (result) {
   alert("YAY");
 }
@@ -84,7 +84,7 @@ function delAttr (evt) {
   $.post('/delete_attr', attr, removeAttrSuccess)
   }
 
-$('.att-results').click(delAttr);
+$('#delete-att').click(delAttr);
 
 ////////////////// DEL event from database ///////////////////////////
 function removeEventSuccess (result) {
@@ -106,59 +106,39 @@ $('.event-results').click(delEvent);
 
 
 
-///////////////////Modal Details/Save Attraction /////////////////////////////
-$('#attractionModal').each(function(){
-  $(this).modal(options);
-});
+///////////////////Modal Details/Map Attraction /////////////////////////////
 
-var options = {
-    "backdrop" : "static"
+function makeModalMap(evt){
+  var resultId = $(this).data('attractionId');
+  initMap(resultId);
 }
 
-///////////////////Modal Detail/Save Event /////////////////////////////
-$('#eventModal').each(function(){
-  $(this).modal(options);
-});
-
-var options = {
-    "backdrop" : "static"
+function populateModal(evt){
+  var attractionId = $(this).data('attractionId');
+  var modalToModalize = $('#attractionModal'+attractionId);
+  modalToModalize.on('shown.bs.modal', makeModalMap).modal('show');
+  //map things
 }
 
+$('.triggerAttModal').on('click', populateModal);
 
 
 ///////////// Google Maps JS ///////////////////////////////////////////
 
-// $(document).on('ready', function() {
-//   $('#attractionModal').on('click', function(evt) {
-//     alert('worked');
-//   });
-// });
+
 var map;
-var mylocation;
+var myLatLng = new google.maps.LatLng(37.7, 122.4);
 
-function initMap() {
-
-  // Specify where the map is centered
-  mylocation = {lat: 37.7, lng: 122.4};
-  // Create a map object and specify the DOM element for display.
-  // center and zoom are required.
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: mylocation,
+function initMap(resultId) {
+  map = new google.maps.Map(document.getElementById('map'+resultId), {
+    center: myLatLng,
     zoom: 5,
   });
-  google.maps.event.trigger(map, "resize");
+  google.maps.event.trigger(map, 'resize');
+  map.setCenter(myLatLng);
+  google.maps.visualRefresh = true;
 }
 
-
-$(".openModal").on('click', function (){
-  // $(nth child which is the modal body).append("<div id="map"></div>")
-  $(this).data('id');
-  initMap();
-  google.maps.event.trigger(map, "resize");
-  map.setCenter(mylocation);
-})
-
-// google.maps.event.addDomListener(modal, 'load', initMap);
 
 
 

@@ -2,6 +2,8 @@
 {% block content %}
 
 
+         
+
 <h1 class ="headings"> Results for {{location}}: </h1>
 
 
@@ -18,11 +20,11 @@
                 <img class="yelp-result-img"src="{{ result.image }}"><br>
                 
 
-                <a class="openModal" href="#" class="btn btn-lg btn-success outline" 
+                <a href="#" class="btn btn-lg btn-success outline triggerAttModal" data-attraction-id="{{ result.id }}"
                 data-toggle="modal" 
-                data-target="#attractionModal{{ result.id }}">Details</a>
+                data-target="">Details</a>
                 
-                <div class="modal fade" id="attractionModal{{ result.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <div class="modal fade" id="attractionModal{{ result.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-attraction-id="{{ result.id }}">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -30,7 +32,7 @@
                             <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
-                               <div id="map"></div>
+                                <div class="modalMap" id="map{{ result.id }}"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -52,7 +54,7 @@
 
 <!-- Limit results in Jinja -->
 {% for event in eventbrite_result %}
-    <div data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}" class="eventbrite-results-btn" id="{{ event.id }}">
+    <div class="eventbrite-results-btn" id="{{ event.id }}">
         <h4>{{ event.name }} </h4>
         <h4>{{ event.start.strftime('%m/%d/%Y')}}</h4>
         {% if event.image %}
@@ -61,10 +63,11 @@
             <img class="eventbriteSearchImg" src="/static/images/defaultimg.jpg">
             {% endif %}
               
-              <a href="#" class="btn btn-lg btn-success" 
+              <a href="#" class="btn btn-lg btn-success triggerEvModal" data-event-id="{{ event.id }}"
                 data-toggle="modal" 
-                data-target="#eventModal{{ event.id }}">Details</a>
-                <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                data-target="">Details</a>
+
+                <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-event-id="{{ event.id }}">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -72,19 +75,18 @@
                             <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
-                                <h3>About {{ event.name }}</h3>
+                                <div class="modalMap" id="map{{ event.id }}"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="saveEventModalBtn">Save Event</button>
+                                <button type="button" class="btn btn-primary saveEventModalBtn" data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}">Save Event</button>
                         </div>
                     </div>
                   </div>
-                </div>
-           
-    </div>
+                </div> 
+            </div>
 {% endfor %}
-<!-- Google maps API -->
+
    
 <script src="/static/script.js"></script>
 

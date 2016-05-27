@@ -86,8 +86,17 @@
     background-color: skyblue;
 }
 
-#map {
-    height:300px;
+.modalMap {
+  margin: 0;
+  padding: 0;
+
+  height:480px;
 }
 
-
+/*.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0;
+    position: relative; 
+}
+*/

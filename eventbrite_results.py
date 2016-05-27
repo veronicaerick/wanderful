@@ -8,6 +8,8 @@ auth_key=os.environ['EVENTBRITE_KEY']
 
 def get_event_results(q, datestring):
 
+    datestring = datetime.strptime(datestring, "%m/%d/%Y")
+    datestring = datetime.strftime(datestring, "%Y-%m-%d")
     client = Eventbrite(auth_key)
     
     # date = datetime.strptime(datestring, "%Y-%m-%d")
@@ -15,11 +17,13 @@ def get_event_results(q, datestring):
     start_date = datestring+"T00:00:00"
     end_date = datestring+"T23:59:59"
     popular = True
-    # category = "Music"
+    sort_by = "best"
+    
     params = {"q": q, "start_date.range_start": start_date, 
-              "start_date.range_end": end_date, "popular": popular}
-              
+              "start_date.range_end": end_date, "sort_by": sort_by}
+    print "AAAAAAAAAA", params
     search_response = client.event_search(**params)
+    print search_response
     events = search_response.get('events', [])
     print events
     rendered_responses = []

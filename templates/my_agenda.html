@@ -6,10 +6,12 @@
 {% if userattractions %}
     <h1>Your saved attractions: </h1>
     {% endif %}
+
         {% for item in userattractions %}
             <div class="att-results" data-id="{{ item.attraction.attraction_id }}">
-  
+
             <h4>{{ item.attraction.name }} </h4>
+            <button id="delete-att" data-id="{{ item.attraction.attraction_id }}" value="delete"> Delete </button>
             </div>
         {% endfor %}
 <br>
