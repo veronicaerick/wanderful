@@ -12,20 +12,15 @@ def get_event_results(q, datestring):
     datestring = datetime.strftime(datestring, "%Y-%m-%d")
     client = Eventbrite(auth_key)
     
-    # date = datetime.strptime(datestring, "%Y-%m-%d")
-    # params = {"q": q, "start_date.range_start": datestring}
-    start_date = datestring+"T00:00:00"
-    end_date = datestring+"T23:59:59"
+    start_date = datestring+"T01:00:00"
+    end_date = datestring+"T21:00:00"
     popular = True
     sort_by = "best"
-    
     params = {"q": q, "start_date.range_start": start_date, 
-              "start_date.range_end": end_date, "sort_by": sort_by}
-    print "AAAAAAAAAA", params
+              "start_date.range_end": end_date, "sort_by": sort_by, "popular": popular}
     search_response = client.event_search(**params)
-    print search_response
+    print search_response, "AAAAAAAAAA"
     events = search_response.get('events', [])
-    print events
     rendered_responses = []
     
     for event in events:
@@ -41,6 +36,7 @@ def get_event_results(q, datestring):
                                     'id': event['id'],
                                     'image':image_url})
 
+    # https://www.eventbriteapi.com/v3/users/me/?expand
 
     pprint.pprint(rendered_responses)
     return rendered_responses

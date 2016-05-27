@@ -108,26 +108,41 @@ $('.event-results').click(delEvent);
 
 ///////////////////Modal Details/Map Attraction /////////////////////////////
 
-function makeModalMap(evt){
+function makeAttModalMap(evt){
   var resultId = $(this).data('attractionId');
   initMap(resultId);
 }
 
-function populateModal(evt){
+function populateAttModal(evt){
   var attractionId = $(this).data('attractionId');
   var modalToModalize = $('#attractionModal'+attractionId);
-  modalToModalize.on('shown.bs.modal', makeModalMap).modal('show');
+  modalToModalize.on('shown.bs.modal', makeAttModalMap).modal('show');
   //map things
 }
 
-$('.triggerAttModal').on('click', populateModal);
+$('.triggerAttModal').on('click', populateAttModal);
 
 
-///////////// Google Maps JS ///////////////////////////////////////////
+///////////////////Modal Details/Map Attraction /////////////////////////////
 
+function makeEvModalMap(evt){
+  var resultId = $(this).data('eventId');
+  initMap(resultId);
+}
+
+function populateEvModal(evt){
+  var eventId = $(this).data('eventId');
+  var modalToModalize = $('#eventModal'+eventId);
+  modalToModalize.on('shown.bs.modal', makeEvModalMap).modal('show');
+  //map things
+}
+
+$('.triggerEvModal').on('click', populateEvModal);
+
+///////////// Google Maps in Modals ///////////////////////////////////////////
 
 var map;
-var myLatLng = new google.maps.LatLng(37.7, 122.4);
+var myLatLng = new google.maps.LatLng(37.788668, -122.411499);
 
 function initMap(resultId) {
   map = new google.maps.Map(document.getElementById('map'+resultId), {
@@ -139,8 +154,18 @@ function initMap(resultId) {
   google.maps.visualRefresh = true;
 }
 
-
-
+//////// create markers ////////////////
+// function dropPins(latitude, longitude) {
+//   var latitudeId = $(this).data('latitude');
+//   var longitudeId = $(this).data('longitude');
+//   var marker = new.google.maps.Marker({
+//     map: map,
+//     position: {
+//       lat: 'latitudeId'
+//       lng: 'longitudeId'
+//     }
+//   });
+// }
 
 
 

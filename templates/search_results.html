@@ -32,6 +32,9 @@
                             <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
+                                <div style="color: black"> Rated: {{ result.rating }}</div>
+                                <div style="color: black"> Address: {{ result.location }}</div>
+                                <div style="color: black"> Phone: {{ result.phone }}</div>
                                 <div class="modalMap" id="map{{ result.id }}"></div>
                             </div>
                             <div class="modal-footer">
@@ -76,6 +79,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="modalMap" id="map{{ event.id }}"></div>
+                                <p></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
