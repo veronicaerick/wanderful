@@ -16,13 +16,15 @@ def get_event_results(q, datestring):
     end_date = datestring+"T21:00:00"
     popular = True
     sort_by = "best"
+    # expand = "https://www.eventbriteapi.com/v3/events/search/?location.address=Indore&expand=organizer,venue&token=JXPOFPSSCU4OQGRAG5RH"
     params = {"q": q, "start_date.range_start": start_date, 
               "start_date.range_end": end_date, "sort_by": sort_by, "popular": popular}
     search_response = client.event_search(**params)
-    print search_response, "AAAAAAAAAA"
     events = search_response.get('events', [])
     rendered_responses = []
     
+
+
     for event in events:
         if event.get('logo'):
             image_url = event['logo']['url']
@@ -37,6 +39,9 @@ def get_event_results(q, datestring):
                                     'image':image_url})
 
     # https://www.eventbriteapi.com/v3/users/me/?expand
+    # event = eventbrite.event_search('chicago', expand="venue")
+    # print 'venue' in rendered_responses
+    # print event
 
     pprint.pprint(rendered_responses)
     return rendered_responses

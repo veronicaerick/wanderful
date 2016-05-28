@@ -1,8 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script type>
+///////////// Google Maps in Modals ///////////////////////////////////////////
 
-         
+var map;
+
+function initMap(resultId) {
+  
+  var myLatLng = new google.maps.LatLng(37.788668, -122.411499);
+
+  map = new google.maps.Map(document.getElementById('map'+resultId), {
+    center: myLatLng,
+    zoom: 5,
+  });
+
+  {% for result in yelp_result %} 
+  var myPlaceLatLng = { lat:{{ result.latitude }}, lng:{{ result.longitude }}}
+  var markers = new google.maps.Marker({
+      position: myPlaceLatLng,
+      map: map
+   });
+  {% endfor %}
+
+  google.maps.event.trigger(map, 'resize');
+  map.setCenter(myLatLng);
+  google.maps.visualRefresh = true;
+};
+
+
+
+</script>
+      
 
 <h1 class ="headings"> Results for {{location}}: </h1>
 
@@ -15,6 +44,7 @@
                 {% for item in result.location %}
                 {{ item }}
                 {% endfor %}
+                {{ result.latitude }}
                  <br>
                 <em>rating</em> {{ result.rating }} <br>  
                 <img class="yelp-result-img"src="{{ result.image }}"><br>
