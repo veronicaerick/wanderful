@@ -4,30 +4,10 @@
 <script type>
 ///////////// Google Maps in Modals ///////////////////////////////////////////
 
-var map;
+// var map;
+google.maps.visualRefresh = true;
 
-function initMap(resultId) {
-  
-  var myLatLng = new google.maps.LatLng(37.788668, -122.411499);
-
-  map = new google.maps.Map(document.getElementById('map'+resultId), {
-    center: myLatLng,
-    zoom: 5,
-  });
-
-  {% for result in yelp_result %} 
-  var myPlaceLatLng = { lat:{{ result.latitude }}, lng:{{ result.longitude }}}
-  var markers = new google.maps.Marker({
-      position: myPlaceLatLng,
-      map: map
-   });
-  {% endfor %}
-
-  google.maps.event.trigger(map, 'resize');
-  map.setCenter(myLatLng);
-  google.maps.visualRefresh = true;
-};
-
+initMaps = {};
 
 
 </script>
@@ -37,7 +17,7 @@ function initMap(resultId) {
 
 
  {% for result in yelp_result %}
-  <div>
+  <div class="attraction-results">
   <div class="yelp-results-btn" id="{{result.id}}">
          <div value="{{result.id}}"> 
                 <h4>{{ result.name }} </h4>   
@@ -76,7 +56,29 @@ function initMap(resultId) {
                 </div>
             </div> 
         </div>   
-    </div>
+</div>
+
+<script>
+
+initMaps['{{ result.id }}'] = function(){
+  var myPlaceLatLng = { lat:{{ result.latitude }}, lng:{{ result.longitude }}};
+
+  var map = new google.maps.Map(document.getElementById('map' + '{{ result.id }}'), {
+    center: myPlaceLatLng,
+    zoom: 11,
+  });
+
+  var marker = new google.maps.Marker({
+      position: myPlaceLatLng,
+      map: map
+   });
+
+  // google.maps.event.trigger(map, 'resize');
+  // map.setCenter(myPlaceLatLng);
+};
+
+</script>
+
 
 {% endfor %} 
   
@@ -85,9 +87,11 @@ function initMap(resultId) {
 <br>
 <br>
 
+
 <!-- Limit results in Jinja -->
 {% for event in eventbrite_result %}
-    <div class="eventbrite-results-btn" id="{{ event.id }}">
+<div class="event-results">
+    <div class="event-results-btn" id="{{ event.id }}">
         <h4>{{ event.name }} </h4>
         <h4>{{ event.start.strftime('%m/%d/%Y')}}</h4>
         {% if event.image %}
@@ -121,7 +125,7 @@ function initMap(resultId) {
             </div>
 {% endfor %}
 
-   
+ </div>  
 <script src="/static/script.js"></script>
 
 {% endblock %}

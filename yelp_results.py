@@ -26,9 +26,10 @@ def get_business_results(location, term="attraction"):
                         'rating': business['rating'],
                         'review_count': business['review_count'],
                         'url': business['url'],
-                        'image' : business['image_url'],
+                        'image' : business['image_url'].replace('/ms.jpg', '/l.jpg'),
                         'id' : business['id'],
                         'phone': business.get('display_phone')})
+
     pprint.pprint(responses)
     return responses
 

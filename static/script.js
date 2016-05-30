@@ -169,7 +169,8 @@ $('.event-results').click(delEvent);
 
 function makeAttModalMap(evt){
   var resultId = $(this).data('attractionId');
-  initMap(resultId);
+  console.log(resultId);
+  initMaps[resultId]();
 }
 
 function populateAttModal(evt){

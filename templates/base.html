@@ -18,20 +18,24 @@
 
 
 <!--Navigation Bar-->
-<nav class="navbar">
-
-{% if "user_id" in session %}
-    <a href="/" id="nav-home">Home</a></div>
-    <a href="/my_agenda">My Agenda</a>
-    <a href="/logout">Logout</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <ul class="nav navbar-nav">
+    {% if "user_id" in session %}
+    <li><a href="/" id="nav-home">Home </a></li>
+    <li><a href="/my_agenda">My Agenda</a></li>
+    <li><a href="/logout">Logout</a></li>
    
 {% else %}
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    <li><a href="/">Home</a></li>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
 {% endif %}
+      </ul>
 
+  </div>
 </nav>
+
 
 
 
