@@ -36,11 +36,12 @@ def get_event_results(q, datestring):
                                     'url': event['url'], 
                                     'locale': event['locale'],
                                     'id': event['id'],
+                                    'description': event['description']['text'],
                                     'image':image_url})
 
     # https://www.eventbriteapi.com/v3/users/me/?expand
-    # event = eventbrite.event_search('chicago', expand="venue")
-    # print 'venue' in rendered_responses
+    event = client.event_search()
+    print event
     # print event
 
     pprint.pprint(rendered_responses)

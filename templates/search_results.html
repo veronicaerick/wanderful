@@ -65,16 +65,33 @@ initMaps['{{ result.id }}'] = function(){
 
   var map = new google.maps.Map(document.getElementById('map' + '{{ result.id }}'), {
     center: myPlaceLatLng,
-    zoom: 11,
+    zoom: 12,
   });
 
   var marker = new google.maps.Marker({
       position: myPlaceLatLng,
-      map: map
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: "/static/images/map-marker-icon.png",
+      title: "{{ result.name }}"
+      // // draggable: false,     
    });
+    /////////////////
+ // info window //
+ /////////////////
 
-  // google.maps.event.trigger(map, 'resize');
-  // map.setCenter(myPlaceLatLng);
+ var contentString = '<div id="content">' +
+  '<h1 style="color:black">"{{ result.name }}"</h1>' +
+  '</div>';
+
+var infoWindow = new google.maps.InfoWindow({
+  content: contentString,
+  maxWidth: 200
+});
+
+  marker.addListener('click', function() {
+    infoWindow.open(map, marker);
+  });
 };
 
 </script>
@@ -91,7 +108,7 @@ initMaps['{{ result.id }}'] = function(){
 <!-- Limit results in Jinja -->
 {% for event in eventbrite_result %}
 <div class="event-results">
-    <div class="event-results-btn" id="{{ event.id }}">
+<!--     <div class="event-results-btn" id="{{ event.id }}"> -->
         <h4>{{ event.name }} </h4>
         <h4>{{ event.start.strftime('%m/%d/%Y')}}</h4>
         {% if event.image %}
@@ -113,7 +130,7 @@ initMaps['{{ result.id }}'] = function(){
                             </div>
                             <div class="modal-body">
                                 <div class="modalMap" id="map{{ event.id }}"></div>
-                                <p></p>
+                                <p style="color:skyblue">{{ event.description }}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

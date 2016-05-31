@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- GOOGLE PLACES API -->
+<script src="//<a href="http://www.jqueryscript.net/tags.php?/map/">map</a>s.googleapis.com/maps/api/js?libraries=places"></script>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- AUTOCOMPLETE API -->
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!-- Calendar API -->
 <script type="text/javascript">
     var datefield=document.createElement("input")
     datefield.setAttribute("type", "date")
@@ -9,7 +20,7 @@
         document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
     }
 </script>
- 
+<!-- datepicker widget -->
 <script>
 if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
     jQuery(function($){ //on document.ready
@@ -20,14 +31,40 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 
 <body class="home">
 <div class="container">
-    <div class="search">
-        <h2>Search by destination</h2>
-  
-            <form action="/process_search" method="GET">
+            <div class="search">
+                <h2>Search by destination</h2>
+                 <script>
+                 $(function() {
+                    var locations = [
+                       "Amsterdam",
+                       "Barcelona",
+                       "San Francisco",
+                       "Oakland",
+                       "Napa",
+                       "Chicago",
+                       "Sydney",
+                       "New York",
+                       "California",
+                       "Miami",
+                       "Berkeley",
+                    ];
+                    $( "#location" ).autocomplete({
+                       minLength:3,
+                       delay: 400,
+                       source: locations
+                    });
+                 });
+              </script>
+
+           <body>
+              <!-- HTML --> 
+              <div class="ui-widget">
+                <form action="/process_search" method="GET">
                 <div class="info-holder">
                 <label for="location">Enter a location:</label>
-                <input type="text" name="location">
+                <input type="text" id="location" name="location">
                 </div>
+              </div>
     
                 <div class="info-holder">
                 <label for="date">Enter a date:</label> 

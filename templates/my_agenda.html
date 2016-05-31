@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <h1>Agenda</h1>
 
 {% if userattractions %}
@@ -11,7 +12,9 @@
             <div class="att-results" data-id="{{ item.attraction.attraction_id }}">
 
             <h4>{{ item.attraction.name }} </h4>
-            <button id="delete-att" data-id="{{ item.attraction.attraction_id }}"> Delete </button>
+
+
+            <button id="delete-att" data-id="{{ item.attraction.attraction_id }}" style="color:skyblue"> Delete </button>
             </div>
         {% endfor %}
 <br>
