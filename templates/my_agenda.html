@@ -21,30 +21,24 @@
 <br>
 <br>
 
-{% if userevents %}
+<!-- {% if userevents %}
     <h1>Your saved events: </h1>
-{% endif %}
+{% endif %} -->
 
 
 {% for item in userevents %}
     <div class="event-results" data-id="{{ item.event.event_id }}">
-        {{ item.event.name }}<br> 
-        <div>
+       
+       <h4> {{ item.event.name }} </h4>
+      
 
-        {% for item in item.event.start %}
-            {{ item }}
-        {% endfor %}
+        <button id="delete-ev" data-id="{{ item.event.event_id }}" style="color:skyblue"> Delete </button>
         </div>
-        </a></div>
 {% endfor %}
-
-
-
-
-
-
-
 
 <script src="/static/script.js"></script>
 
+
+<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=veronica%40ellenblakeley.com&amp;color=%2329527A&amp;ctz=America%2FLos_Angeles" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 {% endblock %}
+

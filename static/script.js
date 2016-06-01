@@ -63,7 +63,7 @@ function addEvent (evt) {
   $.post('/add_to_events', myEvent, addEventSuccess)
 }
 
-$('#saveEventModalBtn').click(addEvent);
+$('.saveEventModalBtn').click(addEvent);
 
 
 
@@ -102,7 +102,7 @@ function delEvent (evt) {
   $.post('/delete_event', ev, removeEventSuccess)
   }
 
-$('.event-results').click(delEvent);
+$('#delete-ev').click(delEvent);
 
 
 
@@ -128,8 +128,9 @@ $('.triggerAttModal').on('click', populateAttModal);
 ///////////////////Modal Details/Map Attraction /////////////////////////////
 
 function makeEvModalMap(evt){
-  var resultId = $(this).data('eventId');
-  initMap(resultId);
+  var eventId = $(this).data('eventId');
+  console.log(eventId);
+  initMaps[eventId]();
 }
 
 function populateEvModal(evt){

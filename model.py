@@ -6,6 +6,7 @@ import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///travis_ci_test'
 db = SQLAlchemy(app)
 
 # This is the connection to the PostgreSQL database; we're getting this through

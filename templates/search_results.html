@@ -76,7 +76,7 @@ initMaps['{{ result.id }}'] = function(){
       title: "{{ result.name }}"
       // // draggable: false,     
    });
-    /////////////////
+/////////////////
  // info window //
  /////////////////
 
@@ -107,8 +107,8 @@ var infoWindow = new google.maps.InfoWindow({
 
 <!-- Limit results in Jinja -->
 {% for event in eventbrite_result %}
-<div class="event-results">
-<!--     <div class="event-results-btn" id="{{ event.id }}"> -->
+<div class="event-results" id="{{ event.id }}">
+
         <h4>{{ event.name }} </h4>
         <h4>{{ event.start.strftime('%m/%d/%Y')}}</h4>
         {% if event.image %}
@@ -129,20 +129,64 @@ var infoWindow = new google.maps.InfoWindow({
                             <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
+                                <div style="color: black"> {{ event.start.strftime('%A, %B %-m %-I:%M%p')}} </div>
+                               
                                 <div class="modalMap" id="map{{ event.id }}"></div>
-                                <p style="color:skyblue">{{ event.description }}</p>
+
+                               
+                                <div style="height:200px;width:60%px;border:1px solid #ccc;font:16px/26px Georgia black, Garamond, Serif;overflow:auto;, font-color:black;">
+                                    <p style="color:black">{{ event.description }}</p>
+                                </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <a href="{{ event.url }}"><i class="fa fa-ticket" aria-hidden="true"></i></a>
                                 <button type="button" class="btn btn-primary saveEventModalBtn" data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}">Save Event</button>
                         </div>
                     </div>
                   </div>
                 </div> 
             </div>
-{% endfor %}
+ 
 
- </div>  
+<script>
+initMaps['{{ event.id }}'] = function(){
+  var myPlaceLatLng = { lat:{{ event.latitude }}, lng:{{ event.longitude }}};
+
+  var map = new google.maps.Map(document.getElementById('map' + '{{ event.id }}'), {
+    center: myPlaceLatLng,
+    zoom: 12,
+  });
+
+  var marker = new google.maps.Marker({
+      position: myPlaceLatLng,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: "/static/images/map-marker-icon.png",
+      title: "{{ event.name }}"
+      // // draggable: false,     
+   });
+/////////////////
+ // info window //
+ /////////////////
+
+ var contentString = '<div id="content">' +
+  '<h1 style="color:black">"{{ event.name }}"</h1>' +
+  '</div>';
+
+var infoWindow = new google.maps.InfoWindow({
+  content: contentString,
+  maxWidth: 200
+});
+
+  marker.addListener('click', function() {
+    infoWindow.open(map, marker);
+  });
+};
+
+</script>
+{% endfor %}
 <script src="/static/script.js"></script>
 
 {% endblock %}
