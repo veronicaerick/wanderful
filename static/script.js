@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 console.log("JS Connected");
 function addAttractionSuccess (result) {
-  alert("YAY");
+  console.log("added");
 }
 
 function addAttraction (evt) {
@@ -43,7 +43,7 @@ $('.saveAttractionModalBtn').click(addAttraction);
 ////////////////// ADD EVENT to database ///////////////////////////
 
 function addEventSuccess (result) {
-  alert("YAY");
+  console.log('added');
 }
 
 function addEvent (evt) {

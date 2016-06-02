@@ -13,6 +13,7 @@ import os
 import yelp_results
 import eventbrite_results
 import json
+from twilio.rest import TwilioRestClient 
 
 ############################################# IMPORTED MODEL TABLES TO ROUTES
 from model import User, Event, Attraction, UserEvent, UserAttraction
@@ -277,6 +278,24 @@ def register_process():
 	session["user_id"] = user.user_id
 
 	flash("User %s added." % email)
+	return redirect("/")
+
+@app.route('/twilio', methods=['POST'])
+def twilio():
+ 
+ 	message = request.form.get('message')
+ 	print message
+# put your own credentials here 
+	ACCOUNT_SID = "AC3a959eac16c2ec0874ea33ac53d6e021" 
+	AUTH_TOKEN = "264e6637c88819c5b5d6c4a4579c4e37" 
+ 
+	client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN) 
+ 
+	client.messages.create(
+		to="+17076960691", 
+		from_="+17073311083", 
+		body=message) 
+	
 	return redirect("/")
 
 ##############################################################################

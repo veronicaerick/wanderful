@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
-
-
 <script>
 $(document).ready(function(){
 
@@ -48,10 +44,16 @@ $(document).ready(function(){
         {{ item.event.start.strftime('%m/%d/%Y') }}
 
         <button class="delete-ev" data-id="{{ item.event.event_id }}" style="color:skyblue"> Delete </button>
+
+<form action="/twilio" method="POST">
+    <input type="text" name="message">
+    <button style"color:blue" type="submit" value="submit">Text me and remind me of {{ item.event.name }} </button>
+</form>
         </div><br>
 {% endfor %}
-<div
+<div>
 <div id='calendar'></div>
+
 
 {% endblock %}
 

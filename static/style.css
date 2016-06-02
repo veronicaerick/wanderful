@@ -3,10 +3,6 @@ body {
     
 }
 
-body .home {
-    background: url('/static/images/bokehtest.jpg');
-}
-
 /*NAVBAR*/
 .navbar {
     border: 2px solid black;
@@ -93,6 +89,7 @@ body .home {
     display: inline-block;
     font-size: 16px;
     width: 300px;
+    margin: auto;
 }
 /* EVENT RESULTS ATTRACTIONS*/
 .eventbriteSearchImg {
