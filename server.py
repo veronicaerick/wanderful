@@ -174,11 +174,6 @@ def delete_event():
 
     return event_id
 
-@app.route("/attractions_to_events")
-def attractions_to_events():
-	"""Whens user submits dates in input field for attractions, they are now saved as events(by adding date)."""
-
-
 
 @app.route("/my_agenda")
 def my_agenda():
@@ -192,6 +187,24 @@ def my_agenda():
 
 	return render_template("my_agenda.html", user=user, userattractions=userattractions, userevents=userevents)
 
+@app.route("/calendar")
+def calendar():
+
+	user = User.query.get(session['user_id'])
+	userevents = UserEvent.query.filter_by(user_id=user.user_id).all()
+	
+	event_list = []
+
+	for userevent in userevents:
+		event_dict = {}
+		title = userevent.event.name
+		start = userevent.event.start
+		event_dict["title"] = title
+		event_dict["start"] = start
+		event_list.append(event_dict)
+
+	event_results = {"events": event_list}
+	return jsonify(event_results) 
 
 
 ##############################################################################

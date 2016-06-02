@@ -44,7 +44,7 @@ class Event(db.Model):
 
 	event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 	name = db.Column(db.String(1000))
-	start = db.Column(db.String(1000))
+	start = db.Column(db.DateTime)
 	status = db.Column(db.String(1000))
 	locale = db.Column(db.String(50))
 	url = db.Column(db.String(1000))
@@ -116,13 +116,29 @@ class UserAttraction (db.Model):
 ##############################################################################
 # Helper functions
 
+def seed_once(app):
+	query1= """ 
+	SELECT count(relname)
+	FROM pg_class
+	WHERE relname='userattractions'
+	"""
+	db_cursor = db.session.execute(query1)
+	row = db_cursor.fetchone()
+	if row[0] == 0:
+		db.create_all()
+
+def seed_force(app):
+	db.drop_all
+
 def connect_to_db(app):
 	"""Connect the database to our Flask app."""
 
 	# Configure to use our PostgreSQL database
+	# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
 	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
 	db.app = app
 	db.init_app(app)
+	seed_once(app)
 
 
 if __name__ == "__main__":

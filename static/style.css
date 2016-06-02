@@ -65,7 +65,7 @@ body {
 }
 
 /* AGENDA RESULTS ATTRACTIONS*/
-.att-results {
+.att-results-agenda {
     background-color: skyBlue; /* Green */
     border: black 2px solid;
     color: white;
@@ -74,6 +74,20 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    width: 300px;
+    margin: auto;
+}
+
+.ev-results-agenda {
+    background-color: salmon; /* Green */
+    border: black 2px solid;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 300px;
 }
 /* EVENT RESULTS ATTRACTIONS*/
 .eventbriteSearchImg {

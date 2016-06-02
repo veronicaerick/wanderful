@@ -12,7 +12,6 @@ initMaps = {};
 
 </script>
       
-
 <h1 class ="headings"> Results for {{location}}: </h1>
 
 
@@ -43,7 +42,11 @@ initMaps = {};
                             </div>
                             <div class="modal-body">
                                 <div style="color: black"> Rated: {{ result.rating }}</div>
-                                <div style="color: black"> Address: {{ result.location }}</div>
+                                <div style="color: black"> Address: 
+                                       {% for item in result.location %}
+                                        {{ item }}
+                                        {% endfor %}
+                                </div>
                                 <div style="color: black"> Phone: {{ result.phone }}</div>
                                 <div class="modalMap" id="map{{ result.id }}"></div>
                             </div>
@@ -81,7 +84,8 @@ initMaps['{{ result.id }}'] = function(){
  /////////////////
 
  var contentString = '<div id="content">' +
-  '<h1 style="color:black">"{{ result.name }}"</h1>' +
+  '<h4 style="color:black;font:12px;">"{{ result.name }}"</h4>' + 
+  '<div>"<img class="yelp-result-img"src="{{ result.image }}">"</div>'
   '</div>';
 
 var infoWindow = new google.maps.InfoWindow({
@@ -172,7 +176,7 @@ initMaps['{{ event.id }}'] = function(){
  /////////////////
 
  var contentString = '<div id="content">' +
-  '<h1 style="color:black">"{{ event.name }}"</h1>' +
+  '<h4 style="color:black">"{{ event.name }}"</h4>' +
   '</div>';
 
 var infoWindow = new google.maps.InfoWindow({

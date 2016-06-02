@@ -1,5 +1,8 @@
 "use strict";
 ////////////////// ADD ATTRACTION to database///////////////////////////
+$(document).ready(function(){
+
+
 console.log("JS Connected");
 function addAttractionSuccess (result) {
   alert("YAY");
@@ -84,7 +87,7 @@ function delAttr (evt) {
   $.post('/delete_attr', attr, removeAttrSuccess)
   }
 
-$('#delete-att').click(delAttr);
+$('.delete-att').click(delAttr);
 
 ////////////////// DEL event from database ///////////////////////////
 function removeEventSuccess (result) {
@@ -92,18 +95,19 @@ function removeEventSuccess (result) {
   console.log(eventId);
   var divToDelete = $("div[data-id=" + eventId + "]");
   divToDelete.remove();
+  alert('gone girl');
 }
 
 function delEvent (evt) {
   var eventId = $(this).data('id');
   var ev = {
-    'event_id': eventId}
+    'event_id': eventId
+  }
 
   $.post('/delete_event', ev, removeEventSuccess)
   }
 
-$('#delete-ev').click(delEvent);
-
+$('.delete-ev').click(delEvent);
 
 
 ///////////////////Modal Details/Map Attraction /////////////////////////////
@@ -142,5 +146,5 @@ function populateEvModal(evt){
 
 $('.triggerEvModal').on('click', populateEvModal);
 
-
+});
 
