@@ -1,5 +1,10 @@
 body {
-    padding-top: 70px;ß
+    padding-top: 70px;
+    
+}
+
+body .home {
+    background: url('/static/images/bokehtest.jpg');
 }
 
 /*NAVBAR*/
