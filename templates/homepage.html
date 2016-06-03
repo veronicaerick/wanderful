@@ -22,6 +22,8 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
         $('#date').datepicker();
     });
 }
+
+jQuery.validator.methods["date"] = function (value, element) { return true; }
 </script>
 
 <body class="home">

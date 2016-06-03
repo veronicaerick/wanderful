@@ -10,13 +10,28 @@ $(document).ready(function(){
 
 });
 
+function waitAtt(){
+
+  var results = $( ".att-results-agenda" );
+  $( ".att-results-agenda" ).wrapAll( "<div class='new' />");
+}
+setTimeout(waitAtt, 500);
+
+function waitEv(){
+
+  var results = $( ".ev-results-agenda" );
+  $( ".ev-results-agenda" ).wrapAll( "<div class='new' />");
+}
+setTimeout(waitEv, 500);
+</script>
+
 </script>
 
 
-<h1>Agenda</h1>
+<h3>Agenda</h3>
 
 {% if userattractions %}
-    <h1>Your saved attractions: </h1>
+    <h3 class="agenda-header">Your saved attractions: </h3>
     {% endif %}
 
         {% for item in userattractions %}
@@ -36,6 +51,9 @@ $(document).ready(function(){
     <h1>Your saved events: </h1>
 {% endif %} -->
 
+{% if userevents %}
+    <h3 class="agenda-header">Your saved events: </h3>
+    {% endif %}
 
 {% for item in userevents %}
     <div class="ev-results-agenda" data-id="{{ item.event.event_id }}">
