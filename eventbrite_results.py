@@ -11,7 +11,7 @@ def get_event_results(q, datestring):
     datestring = datetime.strptime(datestring, "%m/%d/%Y")
     datestring = datetime.strftime(datestring, "%Y-%m-%d")
     client = Eventbrite(auth_key)
-    datestring = "06/05/2016"
+
     
     start_date = datestring+"T01:00:00"
     end_date = datestring+"T23:55:00"
