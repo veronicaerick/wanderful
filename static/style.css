@@ -57,20 +57,6 @@ body {
     float:right;
 }
 
-/*.search {
-    color: skyblue;
-    position: relative;
-    width: 40%;
-    height: 10%;
-    margin: auto;
-    padding-top:150px;  
-}*/
-
-/*#submit-search {
-    padding: .30em;
-    margin: 5px;
-    margin-left: 9em;
-}*/
 .new {
   padding: 0;
   margin: 0;
@@ -96,6 +82,7 @@ body {
     text-decoration: none;
     display: inline-block;
     /* font-size: 16px; */
+    flex: 1 0 0;
     padding: 5px;
     /* width: 200px; */
     /* height: 150px; */
