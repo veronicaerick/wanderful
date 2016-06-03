@@ -9,11 +9,17 @@ google.maps.visualRefresh = true;
 
 initMaps = {};
 
+function explode(){
 
+  var results = $( ".attraction-results" );
+  $( ".attraction-results" ).wrapAll( "<div class='new' />");
+}
+setTimeout(explode, 1000);
 </script>
-      
-<h1 class ="headings"> Results for {{location}}: </h1>
 
+
+<div class="parent"></div>     
+<h1 class ="headings"> Results for {{location}}: </h1>
 
  {% for result in yelp_result %}
   <div class="attraction-results">
@@ -190,8 +196,8 @@ var infoWindow = new google.maps.InfoWindow({
 };
 
 </script>
-{% endfor %}
 
+{% endfor %}       
 
 {% endblock %}
 

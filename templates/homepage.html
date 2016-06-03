@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- GOOGLE PLACES API -->
-<script src="//<a href="http://www.jqueryscript.net/tags.php?/map/">map</a>s.googleapis.com/maps/api/js?libraries=places"></script>
-
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <!-- AUTOCOMPLETE API -->
-    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
-      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<!-- <script src="http://code.jquery.com/jquery-1.10.2.js"></script> -->
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <!-- Calendar API -->
 <script type="text/javascript">
     var datefield=document.createElement("input")
@@ -30,9 +25,8 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 </script>
 
 <body class="home">
-<div class="container">
+<div class="container" style="background-image:url(static/img/bridgebokeh.jpg);background-size:100%">
             <div class="search">
-                <h2>Search by destination</h2>
                  <script>
                  $(function() {
                     var locations = [
@@ -56,26 +50,103 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
                  });
               </script>
 
-           <body>
-              <!-- HTML --> 
-              <div class="ui-widget">
-                <form action="/process_search" method="GET">
-                <div class="info-holder">
-                <label for="location">Enter a location:</label>
-                <input type="text" id="location" name="location">
+              <!-- HTML -->
+  <!-- <div class="full-height">    -->
+      <!-- <div class="bg bg-bg-chrome"> 
+        </div> -->
+      
+      <div class="vertical-align">
+        <div class="container">
+          <!-- <div class="row"> -->
+            <!-- <div class="col-md-12"> -->
+              <div class="main-title">
+                <h1>welcome<br> to Wanderful</h1>
+                  <p>Find the best places for you.</p>
+                    <div class="row">
+                      <!-- <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-md-offset-0"> -->
+                        <div class="input-style-1 ">
+                          
+                          <form action="/process_search" method="GET">
+                            <div class="info-parent">
+                              <div class="info-holder">
+                                <!-- <input type="text" placeholder="Enter a location:"> -->
+                                  <!-- <label for="location">Enter a location:</label> -->
+                                    <input type="text" id="location" placeholder="Enter a location:" name="location" value="barcelona">
+                              </div>
+                              <!-- <div class="min-204"> -->
+                                <div class="info-holder">
+                                  <img src="img/calendar_icon.png" alt="">
+                                  <!-- <label for="date">Enter a date:</label>  -->
+                                  <input type="date" placeholder="Date" id="date" name="date">
+                                  <!-- <input type="text" placeholder="Date" class="datepicker"> -->
+                                </div>
+                                <div class="submit">
+                                  <input class="c-button b-60 bg-white hv-orange" id="submit-search" type="submit" value="search now"/>
+                                </div>
+                              </div>
+                            <!-- </div> -->
+                           
+                          </form>
+                         
+                         </div>
+                        </div>     
+                      </div>
+                    <!-- </div> -->
+                  <!-- </div> -->
                 </div>
               </div>
-    
-                <div class="info-holder">
-                <label for="date">Enter a date:</label> 
-                <input type="date" id="date" name="date">
+            <!-- </div> -->
+  </div>
+
+
+<!-- <div class="full-height">
+  <div class="clip">
+    <div class="bg bg-bg-chrome" style="background-image:url(img/bridgebokeh.jpg)">
+      </div>
+      </div>
+      <div class="vertical-align">
+     <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+           <div class="main-title">
+           <h1>welcome<br> to Wanderful</h1>
+             <p>Find the best places for you.</p>
+             <div class="row">
+              <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-md-offset-0">
+              <div class="input-style-1 min-324">
+              <input type="text" placeholder="Enter a location:">
+              </div>
+              <div class="input-style-1 min-204">
+                <img src="img/calendar_icon.png" alt="">
+                <input type="text" placeholder="Date" class="datepicker">
                 </div>
-                <input id="submit-search" type="submit" value="Let's Go!">
-            </form>
-    </div>
+                <div class="submit">
+                 <input class="c-button b-60 bg-white hv-orange" id="submit-search" type="submit" value="search now">
+                </div>
+              </div>
+             </div>
+           </div>     
+        </div>
+      </div>
+     </div>
+   </div>
+  </div> -->
+  
+<!--    <div class="ui-widget"> -->
+<!--  <form action="/process_search" method="GET"> -->
+<!-- <div class="info-holder"> -->
+<!-- <label for="location">Enter a location:</label> -->
+<!-- <input type="text" id="location" name="location"> -->
+<!--     </div>
+</div> -->
+
+<!--     <div class="info-holder">
+<label for="date">Enter a date:</label> 
+<input type="date" id="date" name="date">
+</div> -->
+<!--  <input id="submit-search" type="submit" value="Let's Go!"> -->
+<!--             </form>
 </div>
+</div> -->
 
-
-
-</body>
 {% endblock %}

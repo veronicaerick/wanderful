@@ -1,31 +1,104 @@
 <!doctype html>
 <html>
 <head>
-    
-    <title>Wanderful</title>
-     <!-- Bootstrap -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-   <script src="http://code.jquery.com/jquery.js"></script>
+<meta charset="utf-8">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="favicon.ico"/>
+
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- Bootstrap CSS template -->
+<link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">        
+<link href="static/css/style.css" rel="stylesheet" type="text/css"/>
+<!-- JQuery -->
+<link href="static/css/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+<link href="static/css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+<script src="http://code.jquery.com/jquery.js"></script>
+<!-- Bootstrap post JQ -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="static/style.css">
-    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
-<!-- autocomplete text -->
-
+<script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
 <!-- calendar -->
-
 <link rel='stylesheet' href='static/fullcalendar.css' />
-<!-- <script src='./fullcalendar/lib/jquery.min.js'></script> -->
 <script src='static/moment.min.js'></script>
-<!-- <script src='./fullcalendar/fullcalendar.js'></script> -->
 <script src='static/fullcalendar.js'></script>
 <script src='static/script.js'></script>
+<!-- My CSS -->
+<link rel="stylesheet" href="static/style.css">
+<title>Wanderful</title>
 </head>
-<body>
 
+<body class="style-2" data-color="theme-1">
+     <div class="style-page">
+        <div class="wrappers"> </div>
+            <a href="homepage.html" class="site-logo"><img src="static/img/theme-1/logo_dark.png" alt=""></a>
+            <div class="color-block">
+            </div>
+            <div class="color-block">
+            <div class="check-option active"><span class="rounded"></span></div>
+            <div class="check-option"><span class="norounded"></span></div>
+            </div>
+            <div class="color-block">
+            <div class="header-style"> 
+            </div>  
+            </div>
+            <div class="color-block"> 
+            </div>
+    </div> 
+  
+   
+<div class="loading orange">
+  <div class="loading-center">
+    <div class="loading-center-absolute">
+      <div class="object object_four"></div>
+      <div class="object object_three"></div>
+      <div class="object object_two"></div>
+      <div class="object object_one"></div>
+    </div>
+  </div>
+</div>
 
 <!--Navigation Bar-->
-<nav class="navbar navbar-default navbar-fixed-top">
+<header class="color-1 hovered menu-3">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="nav"> 
+              <div class="logo-img">LOGO</div>
+              <!-- <img src="static/img/theme-1/logo_dark.png" alt="Wanderful"> -->
+               </a>
+                <div class="nav-menu-icon">
+                 <a href="#"></a>
+                </div>
+                <nav class="menu">
+                <ul>
+                {% if "user_id" in session %}
+                 <li class="type-1 active">
+                <a href="/">homepage<span class="fa fa-angle-down"></span></a></li>
+                <li class="type-1"><a href="/my_agenda">My Agenda<span class="fa fa-angle-down"></span></a></li>
+                <li class="type-1"><a href="/logout">Logout<span class="fa fa-angle-down"></span></a></li>
+                {% else %}
+                <li class="type-1"><a href="/">Home<span class="fa fa-angle-down"></span></a></li>
+                <li class="type-1"><a href="/login">Login<span class="fa fa-angle-down"></span></a></li>
+                <li class="type-1"><a href="/register">Register<span class="fa fa-angle-down"></span></a></li>
+                {% endif %}
+                </ul>      
+              </nav>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>
+
+{% block content %}
+
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <ul class="nav navbar-nav">
     {% if "user_id" in session %}
@@ -39,21 +112,26 @@
     <li><a href="/register">Register</a></li>
 {% endif %}
       </ul>
-
-  </div>
-</nav>
-
-
-
+</div>
+</nav> -->
 
 {% for flash in get_flashed_messages() %}
   {{ flash }}
 {% endfor %}
 
-{% block content %}
+
     Put your body here.
 {% endblock %}
 
+<div class="copyright">
+<span>&copy; 2016 All rights reserved. WANDERFUL</span>
+</div>
 
+
+<script src="static/js/idangerous.swiper.min.js"></script>
+<script src="static/js/jquery.viewportchecker.min.js"></script>
+<script src="static/js/isotope.pkgd.min.js"></script>
+<script src="static/js/jquery.mousewheel.min.js"></script>
+<script src="static/js/all.js"></script>
 </body>
-</html>
+</html> 
