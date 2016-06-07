@@ -115,7 +115,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 
 
 <body class="home">
-<div class="container" style="background-image:url(static/img/bridgebokeh.jpg);background-size:100%; top right no-repeat; background-attachment:fixed;">
+<div class="container" style="background-image:url(static/img/bridgebokeh.jpg);background-size:100%; top right no-repeat; background-attachment:fixed; opacity:0.95; filter:Alpha(opacity=80);">
             <div class="search">
                  <script>
                  $(function() {
@@ -145,8 +145,10 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
       <div class="vertical-align">
         <div class="container">
               <div class="main-title">
+             <!--    <header> -->
                 <h1 id="title">Wanderful</h1>
-                  <p>Wander your way.</p>
+              <!-- </header> -->
+                  <p class="tag">Wander your way.</p>
                     <div class="row">
                         <div class="input-style-1 ">
                           <form action="/process_search" method="GET">
@@ -154,12 +156,12 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
                               <div class="info-holder">
 
 
-                                    <input type="text" id="location" placeholder="Enter a location:" name="location">
+                                    <input style="background-color:#A0CBEE; color:black; opacity: 0.7;" type="text" id="location" placeholder="Enter a location:" name="location">
                                     </div>
 
                                 <div class="info-holder">
                                   
-                                  <input type="date" placeholder="Enter a date:" id="date" name="date">
+                                  <input style="background-color:#A0CBEE; color:black; opacity: 0.7;" type="date" placeholder="Enter a date:" id="date" name="date">
                                 </div>
                                 <div class="parent-submit">
                                 <div class="submit">

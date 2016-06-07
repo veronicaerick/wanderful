@@ -104,7 +104,6 @@ function removeEventSuccess (result) {
   console.log(eventId);
   var divToDelete = $("div[data-id=" + eventId + "]");
   divToDelete.remove();
-  alert('gone girl');
 }
 
 function delEvent (evt) {

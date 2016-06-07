@@ -1,21 +1,27 @@
 body {
-    padding-top:100px;
+    padding-top:80px;
 }
 
 
 input {
- font-family: 'Arvo';
- font-size: 15px;
+ font-family: 'MANIFESTO';
+ font-size: 14px;
  line-height: 25px;
+ color:black;
 }
 
 a {
-    font-family: 'Arvo';
+    font-family: 'MANIFESTO';
+    font-weight: bold;
+    font-size: 15px;
+    text-shadow: 2px 2px 2px skyblue;
 }
 
 p {
-    font-family: 'Arvo';
+    font-family: 'MANIFESTO';
 }
+
+/*MODALS*/
 
 .modal-info {
     border: 1.5px solid skyblue;
@@ -26,22 +32,33 @@ p {
     color: black;
 }
 
+/*Search and title*/
 .search {
     height: 700px !important;
     width: 1170px !important;
 }
 
 #submit-search {
-    font-family: 'Arvo';
+    font-family: 'MANIFESTO';
+    font-size: 20px;
+    text-transform: capitalize;
+    text-shadow: 2px 2px 4px skyblue;
+    color: white;
 }
 
-#title{
-    
-    font-family: 'Arvo';
-    font-size: 72px;
+#title {
+    font-family: 'MANIFESTO';
+    font-size: 90px;
     text-transform: capitalize;
+    font-weight: 900;
     height: 40px;
-    text-shadow: 1 1 10px salmon;
+    text-shadow: 8px 8px 8px black;
+    
+}
+
+.tag {
+  text-shadow: 2px 2px 2px black;
+  font-weight: medium;
 }
 
 .vertical-align {
@@ -49,7 +66,7 @@ p {
 }
 
 .main-title {
-    height:100px;
+    height:180px;
 }
 
 .info-parent {
@@ -65,12 +82,13 @@ p {
     padding: 20px;
     height: 100px;
     margin-top: 35px;
-    font-family: 'Arvo';
+    font-family: 'MANIFESTO';
+    color: black;
 }
 .submit {
     width: 250px;
     margin: 10px auto;
-    font-family: 'Arvo'
+    font-family: 'MANIFESTO'
 }
 
 
@@ -92,8 +110,11 @@ p {
     width: 4%;
     margin-right: 2%;
     margin-top: 2%;
+    height: 20px;
 
 margin-bottom: 1%;}
+
+/* SEARCH RESULTS PAGE DIVS*/
 
 .new {
   padding: 0;
@@ -130,9 +151,9 @@ margin-bottom: 1%;}
 
 .event-results {
     background-color: #00628B;
-    border: #A0CBEE 3px solid;
+    border: #A0CBEE 1px solid;
     width: 400px;
-    height: 320px;
+    height: 325px;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -140,14 +161,14 @@ margin-bottom: 1%;}
     padding: 5px;
     margin-top: 10px;
     text-align: center;
-    font-size: 14px;
+    font-size: small;
     border-radius: 25px;
     font-family: 'Arvo'
 }
 
 .yelp-result-img {
     height: 14em;
-    width: 20em;
+    width: 17em;
     border: 1px solid #00628B;
     border-radius: 10px;
     margin: 4px;
@@ -166,11 +187,11 @@ margin-bottom: 1%;}
 
 /* AGENDA RESULTS ATTRACTIONS*/
 .att-results-agenda {
-    background-color: #A0CBEE;
-    border: white 1px solid;
-    width: 200px;
+    background-color: white;
+    border: solid 10px #A0CBEE;
+    width: 220px;
     height: 150px;
-    color: white;
+    color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -183,22 +204,47 @@ margin-bottom: 1%;}
 }
 
 .ev-results-agenda {
-    background-color:#00628B;
-    border: white 1px solid;
-    width: 200px;
-    height: 250px;
-    color: white;
+    background-color:white;
+    width: 270px;
+    height: 225px;
+    color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    padding: 5px;
+    padding-top: 10px;
     margin-top: 10px;
     text-align: center;
     font-size: 14px;
+    border: 10px solid #00628B;
     border-radius: 25px;
-    font-family: 'Arvo'
+    font-family: 'Arvo';
+    text-transform: capitalize;
 }
 
+.ev-results-agenda h4 {
+    /*padding-top: 10px;*/
+    font-size: small;
+    padding-top: 22px;
+}
+
+#results-ev-header {
+  font-size: small;
+}
+
+.delete-att {
+  float:right;
+}
+
+.a-agenda {
+  font-family: "Arvo";
+  font-weight: normal;
+  float:left;
+  padding-left:10px;
+}
+
+#attraction-header {
+  text-decoration: none;
+}
 
 #btn-results {
   display: inline-block;
@@ -210,7 +256,7 @@ margin-bottom: 1%;}
   border: 1px solid white;
 }
 
-
+/* MAP in modals*/
 .modalMap {
   margin: 0;
   padding: 0;
@@ -221,18 +267,20 @@ margin-bottom: 1%;}
 .header {
     padding-top:50px;
     text-align: center;
-     font-family: 'Arvo'
+     font-family: 'MANIFESTO'
 }
 
 .calendar {
-    padding: 120px;
+    padding: 100px;
+    padding-bottom: 200px;
 }
 
+/*Glyphs*/
 .fa-ticket {
     color: black;
     float: left;
     padding: 1px;
-    height: 5px;
+    height: 8px;
 }
 
 .fa-yelp {
@@ -241,6 +289,7 @@ margin-bottom: 1%;}
     padding: 5px;
 }
 
+/*results page*/
 .results-header{
  padding: 10px;
 }
@@ -263,11 +312,16 @@ margin-bottom: 1%;}
     background-color: #f00;
 }
 
+/*Twilio*/
+
 #input-twilio-box{
-    background-color: white;
-    border: skyblue;
+    background-color: #A0CBEE;
+    border: white;
     border-radius: 10px;
+    color: black;
 }
+
+/*jQuery date picker*/
 
 .datepicker {
     width: 216px;
@@ -277,8 +331,51 @@ margin-bottom: 1%;}
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    background-color: skyblue;
+}
+
+.ui-datepicker-calendar {
+  background-color: #A0CBEE;
+ /* opacity: 0.7;*/
+  border-radius: 5px;
+  font-family: sans-serif;
+}
+
+
+.ui-datepicker-header > td {
+  background-color: white;
+  font-family: "Arvo"
 }
 
 #att-name {
-    padding: 8px;
+    padding: 20px;
+    padding-top: 22px;
+}
+
+.ev-name {
+  padding-top: 10px;
+  padding:10px;
+}
+
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color:red;
+   text-shadow: 2px 2px 4px grey;
+   
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+}
+
+
+.delete-ev {
+  float: right;
 }

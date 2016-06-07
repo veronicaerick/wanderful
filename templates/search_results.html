@@ -134,8 +134,8 @@ var infoWindow = new google.maps.InfoWindow({
 {% for event in eventbrite_result %}
 <div class="event-results" id="{{ event.id }}">
 
-        <h4 id="results-ev-header">{{ event.name }} </h4>
-        <h4>{{ event.start.strftime('%A, %B %d %I:%M%p')}}</h4>
+        <h4 class="results-header" style="font-size:14px">{{ event.name }} </h4>
+        <h4 style="font-size:13px; text-transform:capitalize;">{{ event.start.strftime('%A, %B %d %I:%M%p')}}</h4>
         {% if event.image %}
             <img class="eventbriteSearchImg" src="{{ event.image }}"><br>
             {% else %}

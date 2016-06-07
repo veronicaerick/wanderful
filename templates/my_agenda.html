@@ -35,12 +35,19 @@ setTimeout(waitEv, 500);
         {% for item in userattractions %}
             <div class="att-results-agenda" data-id="{{ item.attraction.attraction_id }}">
 
-            <h4 id="att-name">{{ item.attraction.name }} </h4>
+                 <a class="a-agenda; float:left" href="{{ item.attraction.url }}"><i class="fa fa-yelp" aria-hidden="true"></i></a>
 
-            <a href="{{ item.attraction.url }}"><i class="fa fa-yelp" aria-hidden="true"></i>See on yelp</a>
+                 <button type="button" class="delete-att" data-id="{{ item.attraction.attraction_id }}" ><span class="glyphicon glyphicon-trash" style="padding:1px; color:black;"></span> </button>
 
-            <button type="button" class="delete-att" data-id="{{ item.attraction.attraction_id }}"><span class="glyphicon glyphicon-trash" style="padding:1px; color:white;"></span>Delete</button>
-            </div>
+                  <h4 id="att-name">{{ item.attraction.name }} </h4><br>
+
+             </div>
+
+           
+
+           
+
+            
         {% endfor %}
 <br>
 <br>
@@ -56,11 +63,15 @@ setTimeout(waitEv, 500);
 
 {% for item in userevents %}
     <div class="ev-results-agenda" data-id="{{ item.event.event_id }}">
-       
-       <h4> {{ item.event.name }} </h4>
-        {{ item.event.start.strftime('%m/%d/%Y') }}<br>
-        <br>
+       <a class="a-agenda" href="{{ item.event.url }}"><i class="fa fa-ticket" style="color:black; text-transform:none; font-size:1.4em;" aria-hidden="true"></i></a>
 
+        <button type="button" class="delete-ev" data-id="{{ item.event.event_id }}" ><span class="glyphicon glyphicon-trash" style="padding:1px; color:black;"></span> </button>
+
+       <h4 class="ev-name"> {{ item.event.name }} </h4>
+        {{ item.event.start.strftime('%A, %B %d %-I:%M%p') }}<br>
+        
+        <br>
+        <p style="font-family:Arvo">Text myself a reminder:</p>
         <form action="/twilio" method="POST">
             <input type="text" id="input-twilio-box" name="message">
         <button style"color:blue" type="submit" value="{{ item.event.name }}"> <i class="fa fa-commenting" aria-hidden="true"></i>
@@ -69,10 +80,10 @@ setTimeout(waitEv, 500);
  </button>
 </form>
 <br>
-
-        <a href="{{ item.event.url }}"><i class="fa fa-link" style="color:white;" aria-hidden="true"></i>Go to Eventbrite</a>
-
-        <button type="button" class="delete-ev" data-id="{{ item.event.event_id }}" style="color: white"><span class="glyphicon glyphicon-trash" style="padding:1px; color:white;"></span> Delete </button>
+<!-- 
+        <a class="a-agenda" href="{{ item.event.url }}"><i class="fa fa-link" style="color:black; text-transform:none;" aria-hidden="true"></i></a>
+ -->
+       <!--  <button type="button" class="delete-ev" data-id="{{ item.event.event_id }}" ><span class="glyphicon glyphicon-trash" style="padding:1px; color:black;"></span> </button> -->
 
         </div><br>
 {% endfor %}
