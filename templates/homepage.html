@@ -3,8 +3,12 @@
 
 <!-- AUTOCOMPLETE API -->
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+
+
 <!-- <script src="http://code.jquery.com/jquery-1.10.2.js"></script> -->
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 <!-- Calendar API -->
 <script type="text/javascript">
     var datefield=document.createElement("input")
@@ -15,6 +19,9 @@
         document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
     }
 </script>
+
+
+    </head>
 <!-- datepicker widget -->
 <script>
 if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
@@ -23,11 +30,92 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
     });
 }
 
-jQuery.validator.methods["date"] = function (value, element) { return true; }
 </script>
 
+
+<!-- Modal to LOGIN -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+        <div class="login">
+          <form action="/login" method="POST">
+            <label class="modal-info">Email:
+                <input class="modal-input" type="text" name="email">
+            </label>
+            <label class="modal-info">Password:
+                <input class="modal-input" type="password" name="password">
+            </label><br><br>
+            <input class="modal-info" type="submit" value="Log In" class="login">
+          </form>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal to Register -->
+<div class="modal fade" id="my1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Register</h4>
+      </div>
+      <div class="modal-body">
+        
+        <div class="container">
+        
+          <form action="/register" method="POST">
+        <label>
+            Email
+            <input type="email" name="email" class="form-control">
+        </label><br>
+        <label>
+            Password
+            <input type="password" name="password" class="form-control">
+        </label><br>
+        <label>
+            Firstname
+            <input type="text" name="firstname" class="form-control">
+        </label><br>
+        <label>
+            Lastname
+            <input type="text" name="lastname" class="form-control">
+        </label><br>
+        <label>
+            Phone
+            <input type="integer" name="phone" class="form-control">
+        </label><br>
+        <label>
+            Zipcode
+            <input type="integer" name="zipcode" class="form-control">
+        </label><br>
+        <input class="modal-info" type="submit" value="Submit">
+  
+
+</form>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <body class="home">
-<div class="container" style="background-image:url(static/img/bridgebokeh.jpg);background-size:100%">
+<div class="container" style="background-image:url(static/img/bridgebokeh.jpg);background-size:100%; top right no-repeat; background-attachment:fixed;">
             <div class="search">
                  <script>
                  $(function() {
@@ -51,104 +139,46 @@ jQuery.validator.methods["date"] = function (value, element) { return true; }
                     });
                  });
               </script>
+         
 
-              <!-- HTML -->
-  <!-- <div class="full-height">    -->
-      <!-- <div class="bg bg-bg-chrome"> 
-        </div> -->
       
       <div class="vertical-align">
         <div class="container">
-          <!-- <div class="row"> -->
-            <!-- <div class="col-md-12"> -->
               <div class="main-title">
-                <h1>welcome<br> to Wanderful</h1>
-                  <p>Find the best places for you.</p>
+                <h1 id="title">Wanderful</h1>
+                  <p>Wander your way.</p>
                     <div class="row">
-                      <!-- <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-md-offset-0"> -->
                         <div class="input-style-1 ">
-                          
                           <form action="/process_search" method="GET">
                             <div class="info-parent">
                               <div class="info-holder">
-                                <!-- <input type="text" placeholder="Enter a location:"> -->
-                                  <!-- <label for="location">Enter a location:</label> -->
-                                    <input type="text" id="location" placeholder="Enter a location:" name="location" value="barcelona">
-                              </div>
-                              <!-- <div class="min-204"> -->
+
+
+                                    <input type="text" id="location" placeholder="Enter a location:" name="location">
+                                    </div>
+
                                 <div class="info-holder">
-                                  <img src="img/calendar_icon.png" alt="">
-                                  <!-- <label for="date">Enter a date:</label>  -->
-                                  <input type="date" placeholder="Date" id="date" name="date">
-                                  <!-- <input type="text" placeholder="Date" class="datepicker"> -->
+                                  
+                                  <input type="date" placeholder="Enter a date:" id="date" name="date">
                                 </div>
+                                <div class="parent-submit">
                                 <div class="submit">
                                   <input class="c-button b-60 bg-white hv-orange" id="submit-search" type="submit" value="search now"/>
-                                </div>
+                               </div>
                               </div>
-                            <!-- </div> -->
-                           
+                              </div>
                           </form>
-                         
                          </div>
                         </div>     
                       </div>
-                    <!-- </div> -->
-                  <!-- </div> -->
                 </div>
               </div>
-            <!-- </div> -->
   </div>
 
 
-<!-- <div class="full-height">
-  <div class="clip">
-    <div class="bg bg-bg-chrome" style="background-image:url(img/bridgebokeh.jpg)">
-      </div>
-      </div>
-      <div class="vertical-align">
-     <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-xs-12">
-           <div class="main-title">
-           <h1>welcome<br> to Wanderful</h1>
-             <p>Find the best places for you.</p>
-             <div class="row">
-              <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-md-offset-0">
-              <div class="input-style-1 min-324">
-              <input type="text" placeholder="Enter a location:">
-              </div>
-              <div class="input-style-1 min-204">
-                <img src="img/calendar_icon.png" alt="">
-                <input type="text" placeholder="Date" class="datepicker">
-                </div>
-                <div class="submit">
-                 <input class="c-button b-60 bg-white hv-orange" id="submit-search" type="submit" value="search now">
-                </div>
-              </div>
-             </div>
-           </div>     
-        </div>
-      </div>
-     </div>
-   </div>
-  </div> -->
-  
-<!--    <div class="ui-widget"> -->
-<!--  <form action="/process_search" method="GET"> -->
-<!-- <div class="info-holder"> -->
-<!-- <label for="location">Enter a location:</label> -->
-<!-- <input type="text" id="location" name="location"> -->
-<!--     </div>
-</div> -->
-
-<!--     <div class="info-holder">
-<label for="date">Enter a date:</label> 
-<input type="date" id="date" name="date">
-</div> -->
-<!--  <input id="submit-search" type="submit" value="Let's Go!"> -->
-<!--             </form>
-</div>
-</div> -->
+     <script>
+          var autocomplete = new google.maps.places.Autocomplete(input);
+           var input = $('#user-textbox')[0]
+      </script>
 
 {% endblock %}

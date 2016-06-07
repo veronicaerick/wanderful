@@ -113,6 +113,26 @@ class UserAttraction (db.Model):
 	attraction = db.relationship("Attraction",
 						 backref="userattractions")
 
+# def example_data():
+#     """Create some sample data."""
+
+#     # In case this is run more than once, empty out existing data
+#     Employee.query.delete()
+#     Department.query.delete()
+
+#     # Add sample employees and departments
+#     df = Department(dept_code='fin', dept='Finance', phone='555-1000')
+#     dl = Department(dept_code='legal', dept='Legal', phone='555-2222')
+#     dm = Department(dept_code='mktg', dept='Marketing', phone='555-9999')
+
+#     leonard = Employee(name='Leonard', dept=dl)
+#     liz = Employee(name='Liz', dept=dl)
+#     maggie = Employee(name='Maggie', dept=dm)
+#     nadine = Employee(name='Nadine')
+
+#     db.session.add_all([df, dl, dm, leonard, liz, maggie, nadine])
+#     db.session.commit()
+
 ##############################################################################
 # Helper functions
 

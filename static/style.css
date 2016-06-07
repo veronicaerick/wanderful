@@ -1,33 +1,61 @@
 body {
-    padding-top: 100px;
+    padding-top:100px;
 }
 
-/*NAVBAR*/
-.navbar {
-    border: 2px solid black;
+
+input {
+ font-family: 'Arvo';
+ font-size: 15px;
+ line-height: 25px;
 }
 
-.nav-home {
-    border: white 2px solid;
+a {
+    font-family: 'Arvo';
 }
 
-.login {
-    color: skyblue;
-    position: relative;
-    width: 30%;
-    height: 10%;
-    margin: auto;  
+p {
+    font-family: 'Arvo';
+}
+
+.modal-info {
+    border: 1.5px solid skyblue;
+    border-radius: 5px;
+}
+
+.modal-input {
+    color: black;
 }
 
 .search {
-    height: 950px !important;
+    height: 700px !important;
     width: 1170px !important;
+}
+
+#submit-search {
+    font-family: 'Arvo';
+}
+
+#title{
+    
+    font-family: 'Arvo';
+    font-size: 72px;
+    text-transform: capitalize;
+    height: 40px;
+    text-shadow: 1 1 10px salmon;
+}
+
+.vertical-align {
+    padding-bottom: 50px;
+}
+
+.main-title {
+    height:100px;
 }
 
 .info-parent {
     width: 610px;
     /*border: 1px solid green;*/
-    height: 250px;
+    height: 200px;
     margin: 0 auto;
 }
 
@@ -37,10 +65,17 @@ body {
     padding: 20px;
     height: 100px;
     margin-top: 35px;
+    font-family: 'Arvo';
 }
 .submit {
     width: 250px;
     margin: 10px auto;
+    font-family: 'Arvo'
+}
+
+
+.parent-submit {
+    margin: auto;
 }
 
 .menu {
@@ -48,20 +83,22 @@ body {
 }
 
 .container {
-    padding: 10px;
-    margin: 5px;
-    width: 1850px;
+    width: 1300px;
+    background-image: static;
 }
 
 .logo-img {
     float:right;
-}
+    width: 4%;
+    margin-right: 2%;
+    margin-top: 2%;
+
+margin-bottom: 1%;}
 
 .new {
   padding: 0;
   margin: 0;
   list-style: none;
-  
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -70,98 +107,109 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-
- /* -webkit-flex-flow: row wrap;*/
   justify-content: center;
   justify-content: space-around;
 }
 
 .attraction-results {
-    background-color: skyBlue;
-    border: black 1px solid;
-    width: 300px;
-    height: 400px;
+    background-color: #A0CBEE;
+    border: white 1px solid;
+    width: 400px;
+    height: 350px;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    /* font-size: 16px; */
-    /*flex: 1 0 0;*/
     padding: 5px;
-    /* width: 200px; */
-    /* height: 150px; */
     margin-top: 10px;
-    /* line-height: 150px; */
-    /* color: white; */
-    /* font-weight: bold; */
-    /* font-size: 3em; */
     text-align: center;
+    font-size: 14px;
+    border-radius: 25px;
+    font-family: 'Arvo'
 }
 
 .event-results {
-     background-color: salmon;
-    border: black 1px solid;
-    width: 300px;
-    height: 400px;
+    background-color: #00628B;
+    border: #A0CBEE 3px solid;
+    width: 400px;
+    height: 320px;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    /* font-size: 16px; */
-    /*flex: 1 0 0;*/
     padding: 5px;
-    /* width: 200px; */
-    /* height: 150px; */
     margin-top: 10px;
-    /* line-height: 150px; */
-    /* color: white; */
-    /* font-weight: bold; */
-    /* font-size: 3em; */
     text-align: center;
+    font-size: 14px;
+    border-radius: 25px;
+    font-family: 'Arvo'
 }
 
 .yelp-result-img {
-   /* size: relative;*/
-    height:12em;
-    width: 12em;
+    height: 14em;
+    width: 20em;
+    border: 1px solid #00628B;
+    border-radius: 10px;
+    margin: 4px;
 }
+
+/* EVENT RESULTS ATTRACTIONS*/
+.eventbriteSearchImg {
+    /*height:13em;*/
+    width: 20em;
+    height: 12em;
+    border: 1px solid #A0CBEE;
+    border-radius: 10px;
+    margin: 4px;
+}
+
 
 /* AGENDA RESULTS ATTRACTIONS*/
 .att-results-agenda {
-    background-color: skyBlue; /* Green */
-    border: black 2px solid;
+    background-color: #A0CBEE;
+    border: white 1px solid;
+    width: 200px;
+    height: 150px;
     color: white;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    width: 300px;
-    margin: auto;
+    padding: 5px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 25px;
+    font-family: 'Arvo'
 }
 
 .ev-results-agenda {
-    background-color: salmon; /* Green */
-    border: black 2px solid;
+    background-color:#00628B;
+    border: white 1px solid;
+    width: 200px;
+    height: 250px;
     color: white;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    width: 300px;
-    margin: auto;
-}
-/* EVENT RESULTS ATTRACTIONS*/
-.eventbriteSearchImg {
-/*    size: relative;*/
-    height:12em;
-    width: 12em;
+    padding: 5px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 25px;
+    font-family: 'Arvo'
 }
 
-.btn {
-    background-color: skyblue;
+
+#btn-results {
+  display: inline-block;
+  padding: 15px 45px;
+  font-size: 15px;
+  line-height: 1.8;
+  border-radius: 15px;
+  background-color: skyblue;
+  border: 1px solid white;
 }
+
 
 .modalMap {
   margin: 0;
@@ -169,15 +217,68 @@ body {
   height:480px;
 }
 
-/*.modal-body {
-    max-height: 400px;
-    overflow-y: auto;
-    padding: 0;
-    position: relative; 
-}
-*/
 
-.agenda-header {
+.header {
+    padding-top:50px;
     text-align: center;
-    padding: 10px;
+     font-family: 'Arvo'
+}
+
+.calendar {
+    padding: 120px;
+}
+
+.fa-ticket {
+    color: black;
+    float: left;
+    padding: 1px;
+    height: 5px;
+}
+
+.fa-yelp {
+    color: red;
+    float:left;
+    padding: 5px;
+}
+
+.results-header{
+ padding: 10px;
+}
+
+#results-ev-header{
+ /*padding: 30px;*/
+}
+
+.btn.btn-primary {
+    color:white;
+    background-color: skyblue;
+    border-color: white;
+}
+.btn.btn-primary:hover {
+    color:white;
+    background-color: skyblue;
+    border-color: lightgrey;
+}
+.btn.btn-primary:focus {
+    background-color: #f00;
+}
+
+#input-twilio-box{
+    background-color: white;
+    border: skyblue;
+    border-radius: 10px;
+}
+
+.datepicker {
+    width: 216px;
+    height: auto;
+    margin: 5px auto 0;
+    font: 9pt Arial, sans-serif;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+}
+
+#att-name {
+    padding: 8px;
 }

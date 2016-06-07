@@ -31,10 +31,21 @@
 <script src='static/script.js'></script>
 <!-- My CSS -->
 <link rel="stylesheet" href="static/style.css">
+<!-- Font Awesome -->
+<script src="https://use.fontawesome.com/8ba551412d.js"></script>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<!-- google fonts -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster">
+<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Megrim' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+
+
 <title>Wanderful</title>
 </head>
 
-<body class="style-2" data-color="theme-1">
+<body class="style-2" data-color="theme-3">
      <div class="style-page">
         <div class="wrappers"> </div>
             <a href="homepage.html" class="site-logo"><img src="static/img/theme-1/logo_dark.png" alt=""></a>
@@ -70,8 +81,7 @@
       <div class="row">
          <div class="col-md-12">
             <div class="nav"> 
-              <div class="logo-img">LOGO</div>
-              <!-- <img src="static/img/theme-1/logo_dark.png" alt="Wanderful"> -->
+              <img class="logo-img" src="static/images/logo1.gif" alt="Wanderful">
                </a>
                 <div class="nav-menu-icon">
                  <a href="#"></a>
@@ -80,14 +90,18 @@
                 <ul>
                 {% if "user_id" in session %}
                  <li class="type-1 active">
-                <a href="/">homepage<span class="fa fa-angle-down"></span></a></li>
-                <li class="type-1"><a href="/my_agenda">My Agenda<span class="fa fa-angle-down"></span></a></li>
-                <li class="type-1"><a href="/logout">Logout<span class="fa fa-angle-down"></span></a></li>
+                <a href="/">home<span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="type-1"><a href="/my_agenda"> saves<span style="color:skyblue"class="glyphicon glyphicon-heart"></span></a></li>
+                <li class="type-1"><a href="/logout">Logout<span style="color:skyblue" class="glyphicon glyphicon-log-out"></span></a></li>
                 {% else %}
-                <li class="type-1"><a href="/">Home<span class="fa fa-angle-down"></span></a></li>
-                <li class="type-1"><a href="/login">Login<span class="fa fa-angle-down"></span></a></li>
-                <li class="type-1"><a href="/register">Register<span class="fa fa-angle-down"></span></a></li>
+                <li class="type-1"><a href="/">Home<span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="type-1"><a href="#" data-toggle="modal" data-target="#myModal">Login<span class="fa fa-angle-down"></span></a></li>
+                
+                <li class="type-1"><a href="#" data-toggle="modal" data-target="#my1Modal">Register<span class="fa fa-angle-down"></span></a></li>
                 {% endif %}
+
+      
+
                 </ul>      
               </nav>
             </div>
@@ -96,24 +110,11 @@
    </div>
 </header>
 
+
+
 {% block content %}
 
-<!-- <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <ul class="nav navbar-nav">
-    {% if "user_id" in session %}
-    <li><a href="/" id="nav-home">Home </a></li>
-    <li><a href="/my_agenda">My Agenda</a></li>
-    <li><a href="/logout">Logout</a></li>
-   
-{% else %}
-    <li><a href="/">Home</a></li>
-    <li><a href="/login">Login</a></li>
-    <li><a href="/register">Register</a></li>
-{% endif %}
-      </ul>
-</div>
-</nav> -->
+
 
 {% for flash in get_flashed_messages() %}
   {{ flash }}
@@ -123,10 +124,10 @@
     Put your body here.
 {% endblock %}
 
-<div class="copyright">
+<!-- <div class="copyright">
 <span>&copy; 2016 All rights reserved. WANDERFUL</span>
 </div>
-
+ -->
 
 <script src="static/js/idangerous.swiper.min.js"></script>
 <script src="static/js/jquery.viewportchecker.min.js"></script>

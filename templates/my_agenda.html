@@ -7,7 +7,6 @@ $(document).ready(function(){
     $.get('/calendar', function(event_result) {
       $('#calendar').fullCalendar(event_result);
     });
-
 });
 
 function waitAtt(){
@@ -28,19 +27,19 @@ setTimeout(waitEv, 500);
 </script>
 
 
-<h3>Agenda</h3>
-
 {% if userattractions %}
-    <h3 class="agenda-header">Your saved attractions: </h3>
+    <h3 class="header" id="header-attraction">Your saved attractions: </h3>
     {% endif %}
+    <p>hi</p>
 
         {% for item in userattractions %}
             <div class="att-results-agenda" data-id="{{ item.attraction.attraction_id }}">
 
-            <h4>{{ item.attraction.name }} </h4>
+            <h4 id="att-name">{{ item.attraction.name }} </h4>
 
+            <a href="{{ item.attraction.url }}"><i class="fa fa-yelp" aria-hidden="true"></i>See on yelp</a>
 
-            <button class="delete-att" data-id="{{ item.attraction.attraction_id }}" style="color:skyblue"> Delete </button>
+            <button type="button" class="delete-att" data-id="{{ item.attraction.attraction_id }}"><span class="glyphicon glyphicon-trash" style="padding:1px; color:white;"></span>Delete</button>
             </div>
         {% endfor %}
 <br>
@@ -52,26 +51,36 @@ setTimeout(waitEv, 500);
 {% endif %} -->
 
 {% if userevents %}
-    <h3 class="agenda-header">Your saved events: </h3>
+    <h3 class="header" id="event-header">Your saved events: </h3>
     {% endif %}
 
 {% for item in userevents %}
     <div class="ev-results-agenda" data-id="{{ item.event.event_id }}">
        
        <h4> {{ item.event.name }} </h4>
-        {{ item.event.start.strftime('%m/%d/%Y') }}
+        {{ item.event.start.strftime('%m/%d/%Y') }}<br>
+        <br>
 
-        <button class="delete-ev" data-id="{{ item.event.event_id }}" style="color:skyblue"> Delete </button>
+        <form action="/twilio" method="POST">
+            <input type="text" id="input-twilio-box" name="message">
+        <button style"color:blue" type="submit" value="{{ item.event.name }}"> <i class="fa fa-commenting" aria-hidden="true"></i>
+            <br>
 
-<form action="/twilio" method="POST">
-    <input type="text" name="message">
-    <button style"color:blue" type="submit" value="submit">Text me and remind me of {{ item.event.name }} </button>
+ </button>
 </form>
+<br>
+
+        <a href="{{ item.event.url }}"><i class="fa fa-link" style="color:white;" aria-hidden="true"></i>Go to Eventbrite</a>
+
+        <button type="button" class="delete-ev" data-id="{{ item.event.event_id }}" style="color: white"><span class="glyphicon glyphicon-trash" style="padding:1px; color:white;"></span> Delete </button>
+
         </div><br>
 {% endfor %}
 <div>
-<div id='calendar'></div>
 
+<div class="calendar">
+<div id='calendar'></div>
+</div>
 
 {% endblock %}
 

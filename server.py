@@ -284,8 +284,7 @@ def register_process():
 def twilio():
  
  	message = request.form.get('message')
- 	print message
-# put your own credentials here 
+ 	
 	ACCOUNT_SID = "AC3a959eac16c2ec0874ea33ac53d6e021" 
 	AUTH_TOKEN = "264e6637c88819c5b5d6c4a4579c4e37" 
  

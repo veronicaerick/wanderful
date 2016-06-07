@@ -35,8 +35,9 @@ function addAttraction (evt) {
   // console.log(addAttraction)
 
   $.post("/add_to_attractions", attr, addAttractionSuccess)
-}
+  $(this).find(".glyphicon-heart").css("color", "salmon");
 
+}
 
 $('.saveAttractionModalBtn').click(addAttraction);
 
@@ -64,6 +65,10 @@ function addEvent (evt) {
             'locale': localeId}
   
   $.post('/add_to_events', myEvent, addEventSuccess)
+
+
+    $(this).find(".glyphicon-heart").css("color", "salmon");
+
 }
 
 $('.saveEventModalBtn').click(addEvent);
@@ -74,8 +79,12 @@ $('.saveEventModalBtn').click(addEvent);
 function removeAttrSuccess (result) {
   var attractionId = result;
   var divToDelete = $("div[data-id=" + attractionId + "]");
+  var attractions = $(".att-results-agenda");
+  if (attractions.length === 1) {
+    console.log("YOOOOOO");
+    $('#header-attraction').hide();
+  }
   divToDelete.remove();
-  alert('gone girl');
 }
 
 function delAttr (evt) {
@@ -146,5 +155,5 @@ function populateEvModal(evt){
 
 $('.triggerEvModal').on('click', populateEvModal);
 
+/////////////////// Change Heart Color for SAVE /////////////////////////////
 });
-
