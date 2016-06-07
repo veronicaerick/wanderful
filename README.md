@@ -14,7 +14,15 @@ Wanderful is an adventure and events discovery page designed to make planning ex
   - Eventbrite API
   - Google Maps API
   - Twilio API
-  
 
+###Structure
+
+server.py
+
+Core of the Flask application, contains all the routes.
+
+model.py
+
+Data model, containing all tables to store user and API data.
 
 
