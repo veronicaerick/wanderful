@@ -25,7 +25,25 @@ Integration of the Yelp API and Eventbrite API allows users to browse attraction
 - Search by location and date (Yelp/Eventbrite)
 - Modal windows provide details for each result (Google Maps/Yelp/Eventbrite)
 - Saved events are dynamically rendered on a Javascript calendar 
-- Built-in Twilio implementation TWILIOOOOOO
+- Built-in Twilio implementation
+
+Users login and enter a search location and a date.
+![screenshot](static/images/ss1.png)
+
+The results page features the top results returned after querying the Yelp and Eventbrite API's with the search term and date.
+![screenshot](static/images/ss2.png)
+
+Each result features a modal window rendering a location with the Google Maps API. Users can link directly to the attraction page on Yelp. Attractions can be saved to the users database.
+![screenshot](static/images/ss3.png)
+
+Similar to the modal for Yelp, each event details modal features a google map as well as a short description of the event and a link to the ticketing page on Eventbrite. 
+![screenshot](static/images/ss4.png)
+
+The user's agenda is a single page view of all of the saved attractions and events. The twilio API gives users the option to send themselves text reminders about upcoming saved events, or invite friends. 
+![screenshot](static/images/ss6.png)
+
+A dynamic Javescript calender renders the user's saved events in real time. 
+![screenshot](static/images/ss7.png)
 
 Contact Information: 
     [Linkedin](https://www.linkedin.com/in/veronica-erick-955b7373)
