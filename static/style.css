@@ -110,7 +110,7 @@ p {
     width: 4%;
     margin-right: 2%;
     margin-top: 2%;
-    height: 20px;
+    height: 40px;
 
 margin-bottom: 1%;}
 
@@ -228,7 +228,7 @@ margin-bottom: 1%;}
 }
 
 #results-ev-header {
-  font-size: small;
+  font-size: medium;
 }
 
 .delete-att {
@@ -353,26 +353,26 @@ margin-bottom: 1%;}
 }
 
 .ev-name {
-  padding-top: 10px;
+  padding-top: 13px;
   padding:10px;
 }
 
 ::-webkit-input-placeholder {
-   color: red;
+   color: black;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: red;  
+   color: black;  
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color:red;
+   color:black;
    text-shadow: 2px 2px 4px grey;
    
 }
 
 :-ms-input-placeholder {  
-   color: red;  
+   color: black;  
 }
 
 

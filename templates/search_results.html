@@ -23,57 +23,45 @@ function implode(){
 }
 setTimeout(implode, 1000);
 </script>
-<p>hi</p>
+<p style="color:white;">hi</p>
 
 <div class="parent" style="background-image:url(static/img/bridgebokeh.jpg);background-size:100%; top right no-repeat; background-attachment:fixed;"></div>     
 <h1 class ="header"> Results for {{location}}: </h1>
 
  {% for result in yelp_result %}
   <div class="attraction-results">
-  <div class="yelp-results-btn" id="{{result.id}}">
+    <div class="yelp-results-btn" id="{{result.id}}">
          <div value="{{result.id}}"> 
                 <h4 class="results-header">{{ result.name }} </h4>   
-                {% for item in result.location %}
-                {{ item }}
-                {% endfor %}
-      
-                 <br>
-                <img class="yelp-result-img"src="{{ result.image }}"><br>
-                
-
-                <button type="button"  class="btn btn-primary triggerAttModal" data-attraction-id="{{ result.id }}"
-                data-toggle="modal" 
-                data-target=""><span class="glyphicon glyphicon-search"></span></button>
-
-                
-                <div class="modal fade" id="attractionModal{{ result.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-attraction-id="{{ result.id }}">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <button id="results-ev-header" type="button" class="close" data-dismiss="modal" aria-hidden="true"> About {{ result.name }}</button><br>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <div style="color: black"> Rated: {{ result.rating }}</div>
-                                <div style="color: black"> Address: 
-                                       {% for item in result.location %}
-                                        {{ item }}
-                                        {% endfor %}
+                  {% for item in result.location %}
+                    {{ item }}
+                    {% endfor %}
+                    <br>
+                      <img class="yelp-result-img"src="{{ result.image }}"><br>
+                        <button type="button"  class="btn btn-primary triggerAttModal" data-attraction-id="{{ result.id }}"
+                        data-toggle="modal" 
+                        data-target=""><span class="glyphicon glyphicon-search"></span></button>  
+                          <div class="modal fade" id="attractionModal{{ result.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-attraction-id="{{ result.id }}">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button id="results-ev-header" type="button" class="close" data-dismiss="modal" aria-hidden="true"> About {{ result.name }}</button><br>
+                                  <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
-                                <div style="color: black"> Phone: {{ result.phone }}</div>
-                                <div class="modalMap" id="map{{ result.id }}"></div>
+                                  <div class="modal-body">
+                                    <div style="color: black"> Rated: {{ result.rating }}</div>
+                                      <div style="color: black"> Address: 
+                                       {% for item in result.location %}
+                                          {{ item }}
+                                            {% endfor %}
+                                      </div>
+                                    <div style="color: black"> Phone: {{ result.phone }}</div>
+                                  <div class="modalMap" id="map{{ result.id }}"></div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
-
-                                 
-                                 <a href="{{ result.url }}"><i class="fa fa-yelp" aria-hidden="true"></i></a>
-
-
-                                <button type="button" class="btn btn-primary saveAttractionModalBtn" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}"><span class="glyphicon glyphicon-heart"></span> Save</button>
-
-                               
-
+                                <button type="button" class="btn btn-default" data-dismiss="modal"    ><span class="glyphicon glyphicon-remove"></span>Close</button      >
+                                      <a href="{{ result.url }}"><i class="fa fa-yelp" aria-hidden="true"></i></a>
+                                        <button type="button" class="btn btn-primary saveAttractionModalBtn" data-id="{{ result.id }}" data-name="{{ result.name }}" data-location="{{ result.location }}" data-longitude="{{ result.longitude }}" data-latitude="{{ result.latitude }}" data-rating="{{ result.rating }}" data-review-count="{{ result.review_count }}" data-url="{{ result.url}}" data-img="{{ result.image }}" data-phone="{{ result.phone }}"><span class="glyphicon glyphicon-heart"></span> Save</button>
                         </div>
                     </div>
                   </div>
@@ -81,7 +69,6 @@ setTimeout(implode, 1000);
             </div> 
         </div>   
 </div>
-
 <script>
 
 initMaps['{{ result.id }}'] = function(){
@@ -123,60 +110,46 @@ var infoWindow = new google.maps.InfoWindow({
 
 
 {% endfor %} 
-  
 
 <br>
 <br>
 <br>
-
 
 <!-- Limit results in Jinja -->
 {% for event in eventbrite_result %}
 <div class="event-results" id="{{ event.id }}">
 
         <h4 class="results-header" style="font-size:14px">{{ event.name }} </h4>
-        <h4 style="font-size:13px; text-transform:capitalize;">{{ event.start.strftime('%A, %B %d %I:%M%p')}}</h4>
-        {% if event.image %}
-            <img class="eventbriteSearchImg" src="{{ event.image }}"><br>
-            {% else %}
-            <img class="eventbriteSearchImg" src="/static/images/defaultimg.jpg">
-            {% endif %}
-              
-
-
-                <button type="button"  class="btn btn-primary triggerEvModal" data-event-id="{{ event.id }}"
-                data-toggle="modal" 
-                data-target=""><span class="glyphicon glyphicon-search"></span></button>
-
-                <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-event-id="{{ event.id }}">
-                    <div class="modal-dialog">
+          <h4 style="font-size:13px; text-transform:capitalize;">{{ event.start.strftime('%A, %B %d %-I:%M%p')}}</h4>
+            {% if event.image %}
+              <img class="eventbriteSearchImg" src="{{ event.image }}"><br>
+                {% else %}
+                  <img class="eventbriteSearchImg" src="/static/images/defaultimg.jpg">
+                  {% endif %}
+                  <button type="button"  class="btn btn-primary triggerEvModal" data-event-id="{{ event.id }}" data-toggle="modal" data-target=""><span class="glyphicon glyphicon-search"></span></button>
+                    <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-event-id="{{ event.id }}">
+                      <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">About {{ event.name }}</button>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <div style="color: black"> {{ event.start.strftime('%A, %B %d %I:%M%p')}} </div>
-                               
-                                <div class="modalMap" id="map{{ event.id }}"></div>
-
-                               
-                                <div style="height:200px;width:60%px;border:1px solid #ccc;font:16px/26px Georgia black, Garamond, Serif;overflow:auto;, font-color:black;">
-                                    <p style="color:black">{{ event.description }}</p>
-
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">About {{ event.name }}</button>
+                                <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
-
-                            </div>
-                            <div class="modal-footer">
-                        
-                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
-                                <button type="button" class="btn btn-primary saveEventModalBtn" data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}"><span id="save-heart" onclick="heartChange" class="glyphicon glyphicon-heart"></span> Save</button>
-                                <a href="{{ event.url }}"><i class="fa fa-ticket" aria-hidden="true"></i> <span></span></a>
+                                  <div class="modal-body">
+                                    <div style="color: black"> {{ event.start.strftime('%A, %B %d% -I:%M%p')}} </div>
+                                    <div class="modalMap" id="map{{ event.id }}"></div>
+                                      <div style="height:200px;width:60%px;border:1px solid #ccc;overflow:auto;, font-color:black;">
+                                      <p style="color:black; font-family:Arvo;">{{ event.description }}</p>
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
+                                    <button type="button" class="btn btn-primary saveEventModalBtn" data-id="{{ event.id }}" data-name="{{ event.name }}" data-start="{{ event.start }}" data-status="{{ event.status }}" data-url="{{ event.url }}" data-locale="{{ event.locale }}"><span id="save-heart" onclick="heartChange" class="glyphicon glyphicon-heart"></span> Save</button>
+                                  <a href="{{ event.url }}"><i class="fa fa-ticket" aria-hidden="true" style="font-size:2em;"></i> <span></span></a>
+                          </div>
                         </div>
-                    </div>
-                  </div>
-                </div> 
-            </div>
+                      </div>
+                   </div> 
+</div>
  
 
 <script>
@@ -202,7 +175,10 @@ initMaps['{{ event.id }}'] = function(){
 
  var contentString = '<div id="content">' +
   '<h4 style="color:black">"{{ event.name }}"</h4>' +
+  '<div>"<img class="yelp-result-img"src="{{ event.image }}">"</div>'
   '</div>';
+
+  
 
 var infoWindow = new google.maps.InfoWindow({
   content: contentString,
