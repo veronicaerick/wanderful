@@ -50,7 +50,7 @@ A dynamic Javascript calender renders the user's saved events in real time.
 - Facebook login/integration with Facebook events
 - Add API's & web scrape for more data on travel information to provide the user with a more cohesive travel planning application (Tripadvisor, etc)
 - Chrome extension, drag and drop links from external pages to be saved in the user's agenda
-- Seperate "trips" in agenda for more organization for the user
+- Separate "trips" in agenda for more organization for the user
 - Functionality that allows the user to make notes about what they liked/disliked
 - Social sharing (facebook, twitter, etc)
 
