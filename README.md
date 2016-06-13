@@ -45,7 +45,7 @@ The user's agenda is a single page view of all of the saved attractions and even
 A dynamic Javascript calender renders the user's saved events in real time. 
 ![screenshot](static/images/ss7.png)
 
-Version 2:
+### Version 2.0:
 - Mobile Friendly
 - Facebook login/integration with Facebook events
 - Add API's & web scrape for more data on travel information to provide the user with a more cohesive travel planning application (Tripadvisor, etc)
@@ -53,7 +53,7 @@ Version 2:
 - Seperate "trips" in agenda for more organization for the user
 - Functionality that allows the user to make notes about what they liked/disliked
 - Social sharing (facebook, twitter, etc)
-- 
+
 Contact Information: 
     [Linkedin](https://www.linkedin.com/in/veronica-erick-955b7373)
     ---
