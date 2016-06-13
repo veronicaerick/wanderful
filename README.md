@@ -1,7 +1,7 @@
 <p align='center'>
 ![W](static/images/logo1.gif)
 
-*Wanderful* is a fullstack web application that makes planning vacations, trips and adventures more fun and less time consuming. Users search by location and date, and the app curates local listings of the highest rated attractions for the given location, and events for that date that are within close proximity to that location. Each search result includes details and direct links to the specific Yelp and Eventbrite ticketing pages. Without navigating to an external page, each result includes a mapped location rendered in a modal window to eliminate the need to open tab after tab while scanning the results. *Wanderful* helps users avoid the endless loop of re-saving and re-finding travel information, since they can save search results to their agenda to view later. Users can send themselves SMS reminders about upcoming saved events so they always know what they have planned even when they're on the go. *Wanderful* helps users save time by providing a one stop place to find, save and be reminded of all of the adventures they want to go on. 
+*Wanderful* is a fullstack web application that makes planning vacations, trips and adventures more fun and less time consuming. Users search by location and date, and the app curates local listings of the highest rated attractions for the given location, and events for that date that are within close proximity to that location. Each search result includes details and direct links to the specific Yelp and Eventbrite ticketing pages. Without navigating to an external page, each result includes the option to open a map rendered in a modal window to eliminate the need to open tab after tab while scanning the results. *Wanderful* helps users avoid the endless loop of re-saving and re-finding travel information, since they can save search results to their agenda to view later. Users can send themselves SMS reminders about upcoming saved events so they always know what they have planned even when they're on the go. *Wanderful* helps users save time by providing a one stop place to find, save and be reminded of all of the adventures they want to go on. 
 
 Integration of the Yelp API and Eventbrite API allows users to browse attractions and events happening across the globe in real time. Wanderful uses Google Maps API to show a map of each location dynamically. PostgreSQL and SQLAlchemy store saved search results to be viewable by the user anytime. SMS text reminders for any saved event can be sent from the application via the Twilio API. Users can view their personal calendar that dynamically renders their saved events with Javascript.
 
@@ -42,9 +42,18 @@ Similar to the modal for Yelp, each event details modal features a google map as
 The user's agenda is a single page view of all of the saved attractions and events. The twilio API gives users the option to send themselves text reminders about upcoming saved events, or invite friends. 
 ![screenshot](static/images/ss6.png)
 
-A dynamic Javescript calender renders the user's saved events in real time. 
+A dynamic Javascript calender renders the user's saved events in real time. 
 ![screenshot](static/images/ss7.png)
 
+Version 2:
+- Mobile Friendly
+- Facebook login/integration with Facebook events
+- Add API's & web scrape for more data on travel information to provide the user with a more cohesive travel planning application (Tripadvisor, etc)
+- Chrome extension, drag and drop links from external pages to be saved in the user's agenda
+- Seperate "trips" in agenda for more organization for the user
+- Functionality that allows the user to make notes about what they liked/disliked
+- Social sharing (facebook, twitter, etc)
+- 
 Contact Information: 
     [Linkedin](https://www.linkedin.com/in/veronica-erick-955b7373)
     ---
