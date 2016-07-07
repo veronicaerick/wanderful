@@ -24,7 +24,7 @@ from model import connect_to_db, db
 app = Flask(__name__)
 
 # Required to use Flask sessions and the debug toolbar
-app.secret_key = "ABC"
+app.secret_key = os.environ.get("FLASK_SECRET_KEY")
 
 # Normally, if you use an undefined variable in Jinja2, it fails silently.
 # This is horrible. Fix this so that, instead, it raises an error.
@@ -310,6 +310,10 @@ def logout():
 	flash("Logged Out.")
 	return redirect("/")
 
+@app.route("/error")
+def error():
+    raise Exception("Error!")
+
 ##############################################################################
 ##############################################################################
 							# HELPER FUNCTIONS
@@ -319,9 +323,13 @@ if __name__ == "__main__":
 	# We have to set debug=True here, since it has to be True at the point
 	# that we invoke the DebugToolbarExtension
 	app.debug = True
-	connect_to_db(app)
+	connect_to_db(app, os.environ.get("DATABASE_URL"))
 	PORT = int(os.environ.get("PORT", 5000))
-	app.run(host="0.0.0.0", port=PORT)
+
+	DEBUG = "NO_DEBUG" not in os.environ
+
+	app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
+
 
 	
 
