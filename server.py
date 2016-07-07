@@ -322,12 +322,10 @@ def error():
 if __name__ == "__main__":
 	# We have to set debug=True here, since it has to be True at the point
 	# that we invoke the DebugToolbarExtension
-	app.debug = True
+
 	connect_to_db(app, os.environ.get("DATABASE_URL"))
 	PORT = int(os.environ.get("PORT", 5000))
-
 	DEBUG = "NO_DEBUG" not in os.environ
-
 	app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
 
 
@@ -336,4 +334,4 @@ if __name__ == "__main__":
 	# Use the DebugToolbar
 	# DebugToolbarExtension(app)
 
-	app.run()
+	
