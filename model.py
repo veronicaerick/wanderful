@@ -4,8 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 import datetime 
 
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///travis_ci_test'
 db = SQLAlchemy(app)
 
@@ -154,13 +154,11 @@ def connect_to_db(app, db_uri=None):
 	"""Connect the database to our Flask app."""
 
 	# Configure to use our PostgreSQL database
-	# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri or 'postgres:///project'
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = db_uri or 'postgres:///project'
 	db.app = app
 	db.init_app(app)
 	seed_once(app)
-
 
 if __name__ == "__main__":
 	# As a convenience, if we run this module interactively, it will leave
