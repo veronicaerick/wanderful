@@ -155,7 +155,7 @@ def connect_to_db(app, db_uri=None):
 
 	# Configure to use our PostgreSQL database
 	# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///project'
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri or 'postgres:///project'
+	app.config['SQLALCHEMY_DATABASE_URI'] = db_uri or 'postgres:///project'
 	db.app = app
 	db.init_app(app)
 	seed_once(app)
