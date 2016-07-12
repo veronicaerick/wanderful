@@ -31,4 +31,4 @@ traitlets==4.2.1
 twilio==5.4.0
 Werkzeug==0.10.4
 yelp==1.0.2
-yelpapi==1.4
+yelpapi==1.3
