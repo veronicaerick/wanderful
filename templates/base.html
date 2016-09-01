@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- Bootstrap CSS template -->
 <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">        
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href="static/css/style.css" rel="stylesheet" type="text/css"/>
 <!-- JQuery -->
 <link href="static/css/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
@@ -56,14 +56,14 @@
             <div class="check-option"><span class="norounded"></span></div>
             </div>
             <div class="color-block">
-            <div class="header-style"> 
-            </div>  
+            <div class="header-style">
             </div>
-            <div class="color-block"> 
             </div>
-    </div> 
-  
-   
+            <div class="color-block">
+            </div>
+    </div>
+
+
 <div class="loading orange">
   <div class="loading-center">
     <div class="loading-center-absolute">
@@ -80,7 +80,7 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12">
-            <div class="nav"> 
+            <div class="nav">
               <img class="logo-img" src="static/images/logo1.gif" src="/" alt="Wanderful">
                </a>
                 <div class="nav-menu-icon">
@@ -96,13 +96,13 @@
                 {% else %}
                 <li class="type-1"><a href="/">Home<span class="glyphicon glyphicon-home"></span></a></li>
                 <li class="type-1"><a href="#" data-toggle="modal" data-target="#myModal">Login<span class="fa fa-angle-down"></span></a></li>
-                
+
                 <li class="type-1"><a href="#" data-toggle="modal" data-target="#my1Modal">Register<span class="fa fa-angle-down"></span></a></li>
                 {% endif %}
 
-      
 
-                </ul>      
+
+                </ul>
               </nav>
             </div>
          </div>
@@ -110,7 +110,80 @@
    </div>
 </header>
 
+<!-- Modal to LOGIN -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+        <div class="login">
+          <form action="/login" method="POST">
+            <label class="modal-info">Email:
+                <input class="modal-input" type="text" name="email">
+            </label>
+            <label class="modal-info">Password:
+                <input class="modal-input" type="password" name="password">
+            </label><br><br>
+            <input class="modal-info" type="submit" value="Log In" class="login">
+          </form>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<!-- Modal to Register -->
+<div class="modal fade" id="my1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Register</h4>
+          </div>
+            <div class="modal-body">
+            <div class="container">
+              <form action="/register" method="POST">
+              <label>
+                Email
+                <input type="email" name="email" class="form-control">
+                </label><br>
+                  <label>
+                  Password
+                  <input type="password" name="password" class="form-control">
+                    </label><br>
+                    <label>
+                      Firstname
+                      <input type="text" name="firstname" class="form-control">
+                      </label><br>
+                      <label>
+                      Lastname
+                      <input type="text" name="lastname" class="form-control">
+                    </label><br>
+                    <label>
+                    Phone
+                  <input type="integer" name="phone" class="form-control">
+                  </label><br>
+                <label>
+              Zipcode
+            <input type="integer" name="zipcode" class="form-control">
+          </label><br>
+          <input class="modal-info" type="submit" value="Submit">
+          </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
 {% block content %}
 
@@ -135,4 +208,4 @@
 <script src="static/js/jquery.mousewheel.min.js"></script>
 <script src="static/js/all.js"></script>
 </body>
-</html> 
+</html>
